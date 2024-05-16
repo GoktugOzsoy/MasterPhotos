@@ -21,12 +21,18 @@ public class SettingsFragment extends Fragment {
 
     ImageButton  btn_logout, btn_goBack, btn_settings;
 
-    TextView tv_email, tv_photoCount;
+    TextView tv_email;
+
+    TextView tv_photocount;
+
+
+
 
     SwitchCompat switchtheme;
 
     FirebaseAuth auth;
     FirebaseUser user;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,15 +40,44 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         btn_logout = view.findViewById(R.id.btn_logout);
+        tv_photocount = view.findViewById(R.id.tv_photoCount);
         btn_goBack = view.findViewById(R.id.btnimage_goBack);
-        tv_photoCount = view.findViewById(R.id.tv_photoCount);
         switchtheme = view.findViewById(R.id.switch_theme);
         tv_email = view.findViewById(R.id.tv_userEmail);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            tv_email.setText(userEmail);
+        } else {
+            tv_email.setText("There is no existing email.");
+        }
 
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
 
         boolean switchState = sharedPreferences.getBoolean("switch_state", false);
         switchtheme.setChecked(switchState);
+
+        FirebaseUser currentUser2 = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser2 != null) {
+            btn_logout.setVisibility(View.VISIBLE);
+            btn_goBack.setVisibility(View.INVISIBLE);
+        } else {
+            btn_logout.setVisibility(View.INVISIBLE);
+            btn_goBack.setVisibility(View.VISIBLE);
+        }
+
+        // Galeri fragmentını bul
+        Fragment galleryFragment = getActivity().getSupportFragmentManager().findFragmentByTag("GalleryFragment");
+        if (galleryFragment != null && galleryFragment instanceof GalleryFragment) {
+            // Galeri fragmentını kullanarak galerideki resim sayısını al
+            int photoCount = ((GalleryFragment) galleryFragment).getImageCount();
+
+            // TextView'a yaz
+            tv_photocount.setText("Total Photos: " + photoCount);
+        }
 
         switchtheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -72,6 +107,9 @@ public class SettingsFragment extends Fragment {
 
         return view;
     }
+
+
+
 
     private void saveSwitchState(boolean isChecked) {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);

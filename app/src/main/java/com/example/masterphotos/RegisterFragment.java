@@ -86,6 +86,11 @@ public class RegisterFragment extends Fragment {
                                     currentUserID = mAuth.getCurrentUser().getUid();
                                     mUserStorageRef = mStorage.getReference().child("users").child(currentUserID).child("images");
                                     Toast.makeText(getActivity(), "Register successful.", Toast.LENGTH_SHORT).show();
+                                    FirebaseAuth.getInstance().signOut();
+                                    getActivity().getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.fragment_container, new ProfileFragment())
+                                            .commit();
+
                                 } else {
                                     Toast.makeText(getActivity(), "Register failed.", Toast.LENGTH_SHORT).show();
                                 }

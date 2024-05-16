@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
-
+    private int imageCount = 0;
     private static final int REQUEST_PERMISSION = 123;
     private RecyclerView recyclerView;
     private ArrayList<String> imagePaths;
@@ -36,7 +37,6 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
-
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
 
@@ -90,8 +90,14 @@ public class GalleryFragment extends Fragment {
             }
             cursor.close();
 
+            imageCount = imagePaths.size();
+
             adapter = new GalleryAdapter(requireContext(), imagePaths);
             recyclerView.setAdapter(adapter);
         }
+
+    }
+    public int getImageCount() {
+        return imageCount;
     }
 }
