@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -33,6 +34,7 @@ public class UploadFragment extends Fragment {
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
     private String currentUserID;
 
     public UploadFragment() {
@@ -49,7 +51,18 @@ public class UploadFragment extends Fragment {
         ImageView imageView = view.findViewById(R.id.firebaseimage);
 
         mAuth = FirebaseAuth.getInstance();
-        currentUserID = mAuth.getCurrentUser().getUid();
+        user = mAuth.getCurrentUser();
+        if (user != null) {
+            currentUserID = user.getUid();
+        } else {
+            // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null olduğu için gerekli işlemleri yapamazsınız.
+            // Bu durumu uygun şekilde işleyin, örneğin bir hata mesajı gösterin veya kullanıcıyı giriş yapmaya yönlendirin.
+            // Burada currentUserID'yi null olarak ayarlamak yerine, uygun bir şekilde işlem yapın.
+            // Örneğin:
+            Toast.makeText(getContext(), "Please sign in to upload images", Toast.LENGTH_SHORT).show();
+            // Veya
+            // startActivity(new Intent(getContext(), LoginActivity.class));
+        }
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +74,16 @@ public class UploadFragment extends Fragment {
         uploadImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage(imageView);
+                mAuth = FirebaseAuth.getInstance();
+                user = mAuth.getCurrentUser();
+
+                if (user != null) {
+                    uploadImage(imageView);
+                } else {
+                    Toast.makeText(getContext(), "Please sign in to upload images", Toast.LENGTH_SHORT).show();
+                    // Veya kullanıcıyı giriş yapmaya yönlendirin:
+                    // startActivity(new Intent(getContext(), LoginActivity.class));
+                }
             }
         });
 

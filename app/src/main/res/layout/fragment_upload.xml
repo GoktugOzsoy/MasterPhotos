@@ -6,20 +6,11 @@
     android:orientation="vertical"
     tools:context=".UploadFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Depolama Alanı"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="20dp"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+
 
     <ImageView
         android:id="@+id/firebaseimage"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:layout_width="349dp"
         android:layout_height="321dp"
@@ -29,6 +20,7 @@
         android:id="@+id/selectimagebtn"
         android:layout_width="280dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:textSize="23dp"
         android:layout_marginBottom="15dp"

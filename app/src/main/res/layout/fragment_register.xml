@@ -4,59 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="20dp"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
 
-    <TextView
+    <ImageButton
+        android:id="@+id/btn_settingsReg"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right"
+        android:src="@drawable/img_settings" />
 
-        android:text="Register"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:layout_height="700dp"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Register"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:id="@+id/rg_email"
-            android:hint="Email"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rg_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Email" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:id="@+id/rg_password"
-            android:hint="Password"
+            android:layout_height="wrap_content">
 
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rg_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Password" />
 
-    <Button
-        android:id="@+id/btn_register"
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/txt_loginnow"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:text="Login Now"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Register" />
+
+        <TextView
+            android:id="@+id/txt_loginnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Login Now"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
 </LinearLayout>

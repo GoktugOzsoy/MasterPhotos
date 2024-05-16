@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class RegisterFragment extends Fragment {
 
     TextInputEditText edittext_email, edittext_password;
     Button btn_register;
+    ImageButton btn_settings;
     FirebaseAuth mAuth;
     FirebaseStorage mStorage;
     StorageReference mUserStorageRef;
@@ -40,6 +42,7 @@ public class RegisterFragment extends Fragment {
         edittext_password = view.findViewById(R.id.rg_password);
         btn_register = view.findViewById(R.id.btn_register);
         loginnow = view.findViewById(R.id.txt_loginnow);
+        btn_settings = view.findViewById(R.id.btn_settingsReg);
 
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance();
@@ -51,6 +54,15 @@ public class RegisterFragment extends Fragment {
                 ProfileFragment profileFragment = new ProfileFragment();
                 transaction.replace(R.id.fragment_container, profileFragment);
                 transaction.commit();
+            }
+        });
+
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new SettingsFragment())
+                        .commit();
             }
         });
 
@@ -81,6 +93,8 @@ public class RegisterFragment extends Fragment {
                         });
             }
         });
+
+
 
         return view;
     }

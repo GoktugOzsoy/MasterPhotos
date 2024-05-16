@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class ProfileFragment extends Fragment {
 
     Button btn_login;
 
+    ImageButton btn_settings, btn_goBack;
+
     FirebaseAuth mAuth;
 
     TextView registernow;
@@ -47,6 +50,8 @@ public class ProfileFragment extends Fragment {
         btn_login = view.findViewById(R.id.btn_login);
         mAuth = FirebaseAuth.getInstance();
         registernow = view.findViewById(R.id.txt_registernow);
+        btn_settings = view.findViewById(R.id.btn_settingsPro);
+
 
         registernow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +63,15 @@ public class ProfileFragment extends Fragment {
                 transaction.replace(R.id.fragment_container, registerFragment);
 
                 transaction.commit();
+            }
+        });
+
+        btn_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new SettingsFragment())
+                        .commit();
             }
         });
 
@@ -89,6 +103,10 @@ public class ProfileFragment extends Fragment {
                                         // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null değer dönecektir
                                     }
 
+                                    getActivity().getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.fragment_container, new SettingsFragment())
+                                            .commit();
+
                                     Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
 
                                 } else {
@@ -100,6 +118,8 @@ public class ProfileFragment extends Fragment {
                         });
             }
         });
+
+
 
         return view;
     }

@@ -10,52 +10,66 @@
     tools:context=".ProfileFragment">
 
 
-    <TextView
-        android:text="Login"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/btn_settingsPro"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right"
+        android:src="@drawable/img_settings" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:id="@+id/lg_email"
-            android:hint="Email"
+            android:layout_height="wrap_content">
 
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lg_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Email" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:id="@+id/lg_password"
-            android:hint="Password"
+            android:layout_height="wrap_content">
 
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lg_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Password" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/txt_registernow"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:text="Register Now"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+
+        <TextView
+            android:id="@+id/txt_registernow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Now"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
 </LinearLayout>
