@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ProfileFragment extends Fragment {
     public ProfileFragment() {
@@ -76,6 +79,15 @@ public class ProfileFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     String userEmail = edittext_email.getText().toString();
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    if (user != null) {
+                                        String userID = user.getUid();
+                                        String storagePath = "users/" + userID + "/images";
+                                        StorageReference userStorageRef = FirebaseStorage.getInstance().getReference(storagePath);
+                                    } else {
+                                        // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null değer dönecektir
+                                    }
 
                                     Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
 
