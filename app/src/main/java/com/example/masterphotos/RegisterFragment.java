@@ -1,6 +1,5 @@
 package com.example.masterphotos;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,16 +18,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class RegisterFragment extends Fragment {
 
-
     TextInputEditText edittext_email, edittext_password;
-
     Button btn_register;
-
     FirebaseAuth mAuth;
-
+    FirebaseStorage mStorage;
+    StorageReference mUserStorageRef;
+    String currentUserID;
     TextView loginnow;
 
     @Override
@@ -42,16 +42,14 @@ public class RegisterFragment extends Fragment {
         loginnow = view.findViewById(R.id.txt_loginnow);
 
         mAuth = FirebaseAuth.getInstance();
+        mStorage = FirebaseStorage.getInstance();
 
         loginnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
                 ProfileFragment profileFragment = new ProfileFragment();
-
                 transaction.replace(R.id.fragment_container, profileFragment);
-
                 transaction.commit();
             }
         });
@@ -73,8 +71,9 @@ public class RegisterFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    currentUserID = mAuth.getCurrentUser().getUid();
+                                    mUserStorageRef = mStorage.getReference().child("users").child(currentUserID).child("images");
                                     Toast.makeText(getActivity(), "Register successful.", Toast.LENGTH_SHORT).show();
-
                                 } else {
                                     Toast.makeText(getActivity(), "Register failed.", Toast.LENGTH_SHORT).show();
                                 }
@@ -85,5 +84,4 @@ public class RegisterFragment extends Fragment {
 
         return view;
     }
-
 }

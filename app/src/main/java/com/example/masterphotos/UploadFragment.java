@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -24,12 +25,15 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 public class UploadFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 100;
     private Uri imageUri;
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
+    private FirebaseAuth mAuth;
+    private String currentUserID;
 
     public UploadFragment() {
 
@@ -43,6 +47,9 @@ public class UploadFragment extends Fragment {
         Button selectImageButton = view.findViewById(R.id.selectimagebtn);
         Button uploadImageButton = view.findViewById(R.id.uploadimagebtn);
         ImageView imageView = view.findViewById(R.id.firebaseimage);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +84,7 @@ public class UploadFragment extends Fragment {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
             Date now = new Date();
             String fileName = formatter.format(now);
-            storageReference = FirebaseStorage.getInstance().getReference("images/" + fileName);
+            storageReference = FirebaseStorage.getInstance().getReference("users").child(currentUserID).child("images").child(fileName);
 
             storageReference.putFile(imageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
