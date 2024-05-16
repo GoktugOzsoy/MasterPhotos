@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UploadFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Depolama Alanı"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/firebaseimage"
+        android:layout_gravity="center"
+        android:layout_width="349dp"
+        android:layout_height="321dp"
+        android:layout_marginBottom="55dp"/>
+
+    <Button
+        android:id="@+id/selectimagebtn"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:textSize="23dp"
+        android:layout_marginBottom="15dp"
+        android:text="Select Image" />
+
+    <Button
+        android:id="@+id/uploadimagebtn"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:textSize="23dp"
+        android:text="Upload Image" />
+
+</LinearLayout>

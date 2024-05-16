@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "36777399119",
+    "project_id": "master-photos",
+    "storage_bucket": "master-photos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36777399119:android:3b8ff974e0d4d894ed6b3a",
+        "android_client_info": {
+          "package_name": "com.example.masterphotos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBYT-87JhIxrMJhWiy1RB9mp5HjttXL_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
