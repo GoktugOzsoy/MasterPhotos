@@ -70,6 +70,7 @@ public class StorageFullScreenImageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showDeleteConfirmationDialog();
+                showBottomNavigation();
             }
         });
 
