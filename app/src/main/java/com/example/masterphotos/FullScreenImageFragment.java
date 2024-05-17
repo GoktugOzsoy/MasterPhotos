@@ -93,15 +93,15 @@ public class FullScreenImageFragment extends Fragment {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-                builder.setTitle("Image Details");
-                builder.setMessage("Ad: " + file.getName() + "\n" +
-                        "Size: " + fileSizeInKB + " KB" + "\n" +
-                        "Date: " + takenDate);
-                builder.setPositiveButton("Tamam", null);
+                builder.setTitle((R.string.image_details));
+                builder.setMessage(getString(R.string.name) + file.getName() + "\n" +
+                        (R.string.size) + fileSizeInKB + " KB" + "\n" +
+                        (R.string.date) + takenDate);
+                builder.setPositiveButton((R.string.ok), null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             } else {
-                Toast.makeText(requireContext(), "Image path not found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), (R.string.image_path_not_found), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -119,13 +119,13 @@ public class FullScreenImageFragment extends Fragment {
                 int deletedCount = contentResolver.delete(contentUri, selection, selectionArgs);
 
                 if (deletedCount > 0) {
-                    Toast.makeText(requireContext(), "Image deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), (R.string.image_deleted_successfully), Toast.LENGTH_SHORT).show();
                     requireActivity().getSupportFragmentManager().popBackStack();
                 } else {
-                    Toast.makeText(requireContext(), "An error occurred while deleting the image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), (R.string.an_error_occurred_while_deleting_the_image), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(requireContext(), "Image path not found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), (R.string.image_path_not_found), Toast.LENGTH_SHORT).show();
             }
         }
     }

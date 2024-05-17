@@ -1,6 +1,11 @@
 package com.example.masterphotos;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -10,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,8 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
             // Seçilen fragmenti yükle
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-
+            updateBottomNavigationView();
             return true;
+        }
+
+        public void updateBottomNavigationView() {
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            Menu menu = bottomNavigationView.getMenu();
+            menu.findItem(R.id.nav_upload).setTitle(R.string.upload);
+            menu.findItem(R.id.nav_storage).setTitle(R.string.storage);
+            menu.findItem(R.id.nav_gallery).setTitle(R.string.gallery);
+            menu.findItem(R.id.nav_profile).setTitle(R.string.profile);
         }
     };
 

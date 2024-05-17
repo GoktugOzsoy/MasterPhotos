@@ -87,7 +87,7 @@ public class GalleryFragment extends Fragment {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 loadImages();
             } else {
-                Toast.makeText(requireContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), (R.string.permission_denied), Toast.LENGTH_SHORT).show();
             }
         }
     }

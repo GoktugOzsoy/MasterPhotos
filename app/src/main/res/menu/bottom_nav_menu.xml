@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_upload"
-        android:title="Upload" />
+        android:title="@string/upload" />
     <item
         android:id="@+id/nav_storage"
-        android:title="Storage" />
+        android:title="@string/storage" />
     <item
         android:id="@+id/nav_gallery"
-        android:title="Gallery" />
+        android:title="@string/gallery" />
     <item
         android:id="@+id/nav_profile"
-        android:title="Profile" />
+        android:title="@string/profile" />
 </menu>
 

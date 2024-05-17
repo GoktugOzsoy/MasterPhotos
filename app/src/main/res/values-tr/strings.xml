@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
     <string name="login">Giriş</string>
     <string name="email">Email</string>
@@ -13,4 +12,35 @@
     <string name="upload_image">Resim Yükle</string>
     <string name="there_is_no_existing_email">Mevcut Email Yok</string>
     <string name="total_photos">"Toplam Fotoğraf: "</string>
+    <string name="upload">Yükle</string>
+    <string name="storage">Depolama</string>
+    <string name="gallery">Galeri</string>
+    <string name="profile">Profil</string>
+    <string name="fill_fields_message">Lütfen tüm alanları doldurun</string>
+    <string name="login_failed">Giriş başarısız</string>
+    <string name="no">Hayır</string>
+    <string name="yes">Evet</string>
+    <string name="delete_image">Fotoğrafı Sil</string>
+    <string name="are_you_sure_you_want_to_delete_this_image">Bu resmi silmek istediğinize emin misiniz?</string>
+    <string name="failed_to_fetch_image_details">Resim ayrıntıları görüntülenemedi</string>
+    <string name="date">"Tarih: "</string>
+    <string name="size">"Boyut: "</string>
+    <string name="image_details">Resim Detayları</string>
+    <string name="ok">Tamam</string>
+    <string name="failed_to_delete_image">Resim silmede hata</string>
+    <string name="image_deleted">Resim silindi</string>
+    <string name="please_select_an_image_first">Lütfen önce bir resim seçiniz</string>
+    <string name="failed_to_upload">Yüklemede hata</string>
+    <string name="successfully_uploaded">Yükleme başarılı</string>
+    <string name="uploading_file">Dosya yükleniyor....</string>
+    <string name="please_sign_in_to_upload_images">Resim yüklemek için lütfen giriş yapın</string>
+    <string name="please_sign_in_to_access_storage">Depolamaya erişmek için lütfen giriş yapın</string>
+    <string name="please_fill_all_the_fields">Lütfen tüm boşlukları doldurun</string>
+    <string name="register_successful">Kayıt başarılı</string>
+    <string name="register_failed">Kayıt başarısız</string>
+    <string name="permission_denied">İzin reddedildi!</string>
+    <string name="name">"İsim: "</string>
+    <string name="image_path_not_found">Fotoğraf yolu bulunamadı</string>
+    <string name="image_deleted_successfully">Fotoğraf silme başarılı</string>
+    <string name="an_error_occurred_while_deleting_the_image">Fotoğrafı silerken bir hata oluştu</string>
 </resources>

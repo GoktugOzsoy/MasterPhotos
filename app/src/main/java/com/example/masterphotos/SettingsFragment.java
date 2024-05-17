@@ -10,12 +10,14 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -95,9 +97,8 @@ public class SettingsFragment extends Fragment {
         btn_trlang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 setLocale("tr");
-
+                updateBottomNavigationView(); // Alt gezinme çubuğunu güncelle
             }
         });
 
@@ -105,9 +106,8 @@ public class SettingsFragment extends Fragment {
         btn_enlang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 setLocale("en");
-
+                updateBottomNavigationView(); // Alt gezinme çubuğunu güncelle
             }
         });
 
@@ -121,11 +121,9 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
-
-
         return view;
     }
+
     private void setLocale(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
@@ -134,14 +132,12 @@ public class SettingsFragment extends Fragment {
         configuration.setLocale(locale);
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
+        saveLanguagePreference(languageCode);
         // Yeniden başlatma işlemi
-        getActivity().recreate();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new SettingsFragment())
+                .commit();
     }
-
-
-
-
-
 
     private void saveSwitchState(boolean isChecked) {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
@@ -150,4 +146,22 @@ public class SettingsFragment extends Fragment {
         editor.apply();
     }
 
+    private void saveLanguagePreference(String languageCode) {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("selected_language", languageCode);
+        editor.apply();
+    }
+
+    private void updateBottomNavigationView() {
+        // MainActivity'deki bottomNavigationView'ı bul
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+        if (bottomNavigationView != null) {
+            Menu menu = bottomNavigationView.getMenu();
+            menu.findItem(R.id.nav_upload).setTitle(R.string.upload);
+            menu.findItem(R.id.nav_storage).setTitle(R.string.storage);
+            menu.findItem(R.id.nav_gallery).setTitle(R.string.gallery);
+            menu.findItem(R.id.nav_profile).setTitle(R.string.profile);
+        }
+    }
 }

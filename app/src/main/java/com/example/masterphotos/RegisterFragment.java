@@ -74,7 +74,7 @@ public class RegisterFragment extends Fragment {
                 password = edittext_password.getText().toString();
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                    Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), (R.string.please_fill_all_the_fields), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -85,14 +85,14 @@ public class RegisterFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     currentUserID = mAuth.getCurrentUser().getUid();
                                     mUserStorageRef = mStorage.getReference().child("users").child(currentUserID).child("images");
-                                    Toast.makeText(getActivity(), "Register successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), (R.string.register_successful), Toast.LENGTH_SHORT).show();
                                     FirebaseAuth.getInstance().signOut();
                                     getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.fragment_container, new ProfileFragment())
                                             .commit();
 
                                 } else {
-                                    Toast.makeText(getActivity(), "Register failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), (R.string.register_failed), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

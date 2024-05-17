@@ -98,39 +98,39 @@ public class StorageFullScreenImageFragment extends Fragment {
 
             // Detayları göstermek için bir iletişim kutusu oluştur
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-            builder.setTitle("Image Details");
-            builder.setMessage("Size: " + fileSizeInKB + " KB\n"
-                    + "Date: " + takenDate);
-            builder.setPositiveButton("OK", null);
+            builder.setTitle((R.string.image_details));
+            builder.setMessage(getString((R.string.size)) + fileSizeInKB + " KB\n"
+                    + getString(R.string.date) + takenDate);
+            builder.setPositiveButton((R.string.ok), null);
             builder.show();
         }).addOnFailureListener(exception -> {
             // Başarısız olursa kullanıcıya hata mesajı göster
-            Toast.makeText(requireContext(), "Failed to fetch image details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), (R.string.failed_to_fetch_image_details), Toast.LENGTH_SHORT).show();
         });
     }
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Delete Image");
+        builder.setTitle(R.string.delete_image);
 
-        builder.setMessage("Are you sure you want to delete this image?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.are_you_sure_you_want_to_delete_this_image);
+        builder.setPositiveButton((R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteImage();
             }
         });
-        builder.setNegativeButton("No", null);
+        builder.setNegativeButton((R.string.no), null);
         builder.show();
     }
 
     private void deleteImage() {
         StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageURL);
         photoRef.delete().addOnSuccessListener(task -> {
-            Toast.makeText(getContext(), "Image deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.image_deleted), Toast.LENGTH_SHORT).show();
             requireActivity().getSupportFragmentManager().popBackStack();
         }).addOnFailureListener(e -> {
-            Toast.makeText(getContext(), "Failed to delete image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.failed_to_delete_image), Toast.LENGTH_SHORT).show();
         });
     }
 

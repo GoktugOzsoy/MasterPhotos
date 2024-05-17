@@ -52,7 +52,7 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
             recyclerView.setAdapter(adapter);
             getImagesFromFirebaseStorage();
         } else {
-            Toast.makeText(getContext(), "Please sign in to access storage", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.please_sign_in_to_access_storage), Toast.LENGTH_SHORT).show();
         }
 
         return view;

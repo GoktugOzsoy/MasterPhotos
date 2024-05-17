@@ -59,7 +59,7 @@ public class UploadFragment extends Fragment {
             // Bu durumu uygun şekilde işleyin, örneğin bir hata mesajı gösterin veya kullanıcıyı giriş yapmaya yönlendirin.
             // Burada currentUserID'yi null olarak ayarlamak yerine, uygun bir şekilde işlem yapın.
             // Örneğin:
-            Toast.makeText(getContext(), "Please sign in to upload images", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.please_sign_in_to_upload_images), Toast.LENGTH_SHORT).show();
             // Veya
             // startActivity(new Intent(getContext(), LoginActivity.class));
         }
@@ -80,7 +80,7 @@ public class UploadFragment extends Fragment {
                 if (user != null) {
                     uploadImage(imageView);
                 } else {
-                    Toast.makeText(getContext(), "Please sign in to upload images", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), (R.string.please_sign_in_to_upload_images), Toast.LENGTH_SHORT).show();
                     // Veya kullanıcıyı giriş yapmaya yönlendirin:
                     // startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -100,7 +100,7 @@ public class UploadFragment extends Fragment {
     private void uploadImage(ImageView imageView) {
         if (imageUri != null) {
             progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Uploading File....");
+            progressDialog.setTitle(getString(R.string.uploading_file));
             progressDialog.show();
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
@@ -113,7 +113,7 @@ public class UploadFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             imageView.setImageURI(null);
-                            Toast.makeText(getContext(), "Successfully Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), (R.string.successfully_uploaded), Toast.LENGTH_SHORT).show();
                             if (progressDialog.isShowing())
                                 progressDialog.dismiss();
                         }
@@ -122,11 +122,11 @@ public class UploadFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                             if (progressDialog.isShowing())
                                 progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed to Upload", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), (R.string.failed_to_upload), Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
-            Toast.makeText(getContext(), "Please select an image first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.please_select_an_image_first), Toast.LENGTH_SHORT).show();
         }
     }
 

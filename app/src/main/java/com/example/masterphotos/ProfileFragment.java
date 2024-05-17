@@ -85,7 +85,8 @@ public class ProfileFragment extends Fragment {
                 password = edittext_password.getText().toString();
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                    Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.fill_fields_message), Toast.LENGTH_SHORT).show();
+
                     return;
                 }
 
@@ -113,7 +114,7 @@ public class ProfileFragment extends Fragment {
 
                                 } else {
 
-                                    Toast.makeText(getActivity(), "Login failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), (R.string.login_failed), Toast.LENGTH_SHORT).show();
 
                                 }
                             }
