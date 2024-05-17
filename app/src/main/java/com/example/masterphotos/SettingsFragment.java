@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,11 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 public class SettingsFragment extends Fragment {
 
-    ImageButton  btn_logout, btn_goBack, btn_settings;
+    ImageButton  btn_logout, btn_goBack, btn_trlang, btn_enlang;
 
     TextView tv_email;
 
@@ -41,6 +45,8 @@ public class SettingsFragment extends Fragment {
         btn_goBack = view.findViewById(R.id.btnimage_goBack);
         switchtheme = view.findViewById(R.id.switch_theme);
         tv_email = view.findViewById(R.id.tv_userEmail);
+        btn_enlang = view.findViewById(R.id.btn_enlang);
+        btn_trlang = view.findViewById(R.id.btn_trlang);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -86,6 +92,25 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        btn_trlang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setLocale("tr");
+
+            }
+        });
+
+
+        btn_enlang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setLocale("en");
+
+            }
+        });
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +121,21 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+
+
+
         return view;
+    }
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        // Yeniden başlatma işlemi
+        getActivity().recreate();
     }
 
 

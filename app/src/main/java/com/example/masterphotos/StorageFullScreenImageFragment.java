@@ -111,6 +111,7 @@ public class StorageFullScreenImageFragment extends Fragment {
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle("Delete Image");
+
         builder.setMessage("Are you sure you want to delete this image?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

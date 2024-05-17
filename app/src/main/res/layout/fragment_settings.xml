@@ -108,6 +108,7 @@
                 android:textStyle="bold"/>
 
             <ImageButton
+                android:id="@+id/btn_trlang"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:src="@drawable/img_trflag"
@@ -118,6 +119,7 @@
                 />
 
             <ImageButton
+                android:id="@+id/btn_enlang"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:src="@drawable/img_enflag"
