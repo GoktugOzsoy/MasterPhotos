@@ -1,6 +1,8 @@
 package com.example.masterphotos;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -90,14 +92,19 @@ public class GalleryFragment extends Fragment {
             }
             cursor.close();
 
-            imageCount = imagePaths.size();
+            // Resim sayısını SharedPreferences'e kaydet
+            int imageCount = imagePaths.size();
+            SharedPreferences sharedPreferences = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("imageCount", imageCount);
+            editor.apply();
 
             adapter = new GalleryAdapter(requireContext(), imagePaths);
             recyclerView.setAdapter(adapter);
         }
-
     }
+
     public int getImageCount() {
-        return imageCount;
+        return imagePaths != null ? imagePaths.size() : 0;
     }
 }

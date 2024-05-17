@@ -25,9 +25,6 @@ public class SettingsFragment extends Fragment {
 
     TextView tv_photocount;
 
-
-
-
     SwitchCompat switchtheme;
 
     FirebaseAuth auth;
@@ -56,7 +53,6 @@ public class SettingsFragment extends Fragment {
         }
 
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
-
         boolean switchState = sharedPreferences.getBoolean("switch_state", false);
         switchtheme.setChecked(switchState);
 
@@ -69,15 +65,10 @@ public class SettingsFragment extends Fragment {
             btn_goBack.setVisibility(View.VISIBLE);
         }
 
-        // Galeri fragmentını bul
-        Fragment galleryFragment = getActivity().getSupportFragmentManager().findFragmentByTag("GalleryFragment");
-        if (galleryFragment != null && galleryFragment instanceof GalleryFragment) {
-            // Galeri fragmentını kullanarak galerideki resim sayısını al
-            int photoCount = ((GalleryFragment) galleryFragment).getImageCount();
-
-            // TextView'a yaz
-            tv_photocount.setText("Total Photos: " + photoCount);
-        }
+        // SharedPreferences'den resim sayısını oku
+        SharedPreferences galleryPrefs = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+        int photoCount = galleryPrefs.getInt("imageCount", 0);
+        tv_photocount.setText("Total Photos: " + photoCount);
 
         switchtheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -107,6 +98,8 @@ public class SettingsFragment extends Fragment {
 
         return view;
     }
+
+
 
 
 
