@@ -28,6 +28,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         this.imagePaths = imagePaths;
     }
 
+    public void removeImage(String imagePath) {
+        imagePaths.remove(imagePath);
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

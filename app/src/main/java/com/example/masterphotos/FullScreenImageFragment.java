@@ -101,7 +101,7 @@ public class FullScreenImageFragment extends Fragment {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             } else {
-                Toast.makeText(requireContext(), "Resim yolu bulunamadı", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Image path not found", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -119,13 +119,13 @@ public class FullScreenImageFragment extends Fragment {
                 int deletedCount = contentResolver.delete(contentUri, selection, selectionArgs);
 
                 if (deletedCount > 0) {
-                    Toast.makeText(requireContext(), "Resim başarıyla silindi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Image deleted successfully", Toast.LENGTH_SHORT).show();
                     requireActivity().getSupportFragmentManager().popBackStack();
                 } else {
-                    Toast.makeText(requireContext(), "Resim silinirken bir hata oluştu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "An error occurred while deleting the image", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(requireContext(), "Resim yolu bulunamadı", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Image path not found", Toast.LENGTH_SHORT).show();
             }
         }
     }

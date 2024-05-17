@@ -1,5 +1,7 @@
 package com.example.masterphotos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -83,7 +85,7 @@ public class ProfileFragment extends Fragment {
                 password = edittext_password.getText().toString();
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-                    Toast.makeText(getActivity(), "Please fill all the blanks.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -107,11 +109,11 @@ public class ProfileFragment extends Fragment {
                                             .replace(R.id.fragment_container, new SettingsFragment())
                                             .commit();
 
-                                    Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+
 
                                 } else {
 
-                                    Toast.makeText(getActivity(), "Login failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Login failed", Toast.LENGTH_SHORT).show();
 
                                 }
                             }

@@ -22,16 +22,16 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:textSize="23dp"
+        android:textSize="23sp"
         android:layout_marginBottom="15dp"
-        android:text="Select Image" />
+        android:text="@string/select_image" />
 
     <Button
         android:id="@+id/uploadimagebtn"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:textSize="23dp"
-        android:text="Upload Image" />
+        android:textSize="23sp"
+        android:text="@string/upload_image" />
 
 </LinearLayout>

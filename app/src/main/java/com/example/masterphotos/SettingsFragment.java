@@ -49,7 +49,7 @@ public class SettingsFragment extends Fragment {
             String userEmail = currentUser.getEmail();
             tv_email.setText(userEmail);
         } else {
-            tv_email.setText("There is no existing email.");
+            tv_email.setText(R.string.there_is_no_existing_email);
         }
 
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment {
         // SharedPreferences'den resim sayısını oku
         SharedPreferences galleryPrefs = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
         int photoCount = galleryPrefs.getInt("imageCount", 0);
-        tv_photocount.setText("Total Photos: " + photoCount);
+        tv_photocount.setText(getString(R.string.total_photos) + photoCount);
 
         switchtheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
