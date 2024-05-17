@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_now">Register Now</string>
+    <string name="register">Register</string>
+    <string name="login_now">Login Now</string>
+    <string name="application_theme">Application Theme</string>
+    <string name="language">Language</string>
+    <string name="select_image">Select Image</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="there_is_no_existing_email">There is no existing email</string>
+    <string name="total_photos">"Total Photos: "</string>
+</resources>

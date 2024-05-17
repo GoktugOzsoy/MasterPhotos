@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="login">Giriş</string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="register_now">Şimdi Kayıt Ol</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="login_now">Şimdi Giriş Yap</string>
+    <string name="application_theme">Uygulama Teması</string>
+    <string name="language">Dil</string>
+    <string name="select_image">Resim Seç</string>
+    <string name="upload_image">Resim Yükle</string>
+    <string name="there_is_no_existing_email">Mevcut Email Yok</string>
+    <string name="total_photos">"Toplam Fotoğraf: "</string>
+</resources>
