@@ -15,9 +15,11 @@ import java.util.List;
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageViewHolder> {
 
     private List<String> imageURLs;
+    private OnImageClickListener onImageClickListener;
 
-    public StorageAdapter(List<String> imageURLs) {
+    public StorageAdapter(List<String> imageURLs, OnImageClickListener onImageClickListener) {
         this.imageURLs = imageURLs;
+        this.onImageClickListener = onImageClickListener;
     }
 
     @NonNull
@@ -33,6 +35,14 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageV
         Glide.with(holder.itemView.getContext())
                 .load(imageURL)
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onImageClickListener.onImageClick(imageURL);
+            }
+        });
     }
 
     @Override
@@ -47,5 +57,9 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.StorageV
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewStorage);
         }
+    }
+
+    public interface OnImageClickListener {
+        void onImageClick(String imageURL);
     }
 }

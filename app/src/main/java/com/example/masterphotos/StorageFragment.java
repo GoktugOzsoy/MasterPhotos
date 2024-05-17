@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageFragment extends Fragment {
+public class StorageFragment extends Fragment implements StorageAdapter.OnImageClickListener {
     private FirebaseStorage storage;
     private StorageReference storageRef;
     FirebaseUser user;
@@ -47,21 +48,12 @@ public class StorageFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
             imageURLs = new ArrayList<>();
-            adapter = new StorageAdapter(imageURLs);
+            adapter = new StorageAdapter(imageURLs, this);
             recyclerView.setAdapter(adapter);
             getImagesFromFirebaseStorage();
-            // currentUserID'yi kullanarak diğer işlemleri gerçekleştirin
         } else {
-            // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null olduğu için gerekli işlemleri yapamazsınız.
-            // Bu durumu uygun şekilde işleyin, örneğin bir hata mesajı gösterin veya kullanıcıyı giriş yapmaya yönlendirin.
-            // Burada currentUserID'yi null olarak ayarlamak yerine, uygun bir şekilde işlem yapın.
-            // Örneğin:
             Toast.makeText(getContext(), "Please sign in to access storage", Toast.LENGTH_SHORT).show();
-            // Veya
-            // startActivity(new Intent(getContext(), LoginActivity.class));
         }
-
-
 
         return view;
     }
@@ -93,5 +85,17 @@ public class StorageFragment extends Fragment {
                         // Handle any errors
                     }
                 });
+    }
+
+    @Override
+    public void onImageClick(String imageURL) {
+        openFullScreenImage(imageURL);
+    }
+
+    private void openFullScreenImage(String imageURL) {
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, StorageFullScreenImageFragment.newInstance(imageURL));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

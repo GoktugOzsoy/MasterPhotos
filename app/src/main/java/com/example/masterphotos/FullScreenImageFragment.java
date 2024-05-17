@@ -93,10 +93,10 @@ public class FullScreenImageFragment extends Fragment {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-                builder.setTitle("Resim Detayları");
+                builder.setTitle("Image Details");
                 builder.setMessage("Ad: " + file.getName() + "\n" +
-                        "Boyut: " + fileSizeInKB + " KB" + "\n" +
-                        "Tarih: " + takenDate);
+                        "Size: " + fileSizeInKB + " KB" + "\n" +
+                        "Date: " + takenDate);
                 builder.setPositiveButton("Tamam", null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
