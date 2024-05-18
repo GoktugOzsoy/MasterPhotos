@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="5dp" />
+            <solid android:color="#D3D3D3" /> <!-- Light gray color for the background -->
+        </shape>
+    </item>
+
+    <!-- Secondary progress color -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="5dp" />
+                <solid android:color="#AAAAAA" /> <!-- Gray color for the secondary progress -->
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Progress color -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="5dp" />
+                <solid android:color="#3F51B5" /> <!-- Blue color for the primary progress -->
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

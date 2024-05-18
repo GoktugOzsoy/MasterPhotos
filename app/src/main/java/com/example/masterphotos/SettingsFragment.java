@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,11 +28,13 @@ public class SettingsFragment extends Fragment {
 
     ImageButton  btn_logout, btn_goBack, btn_trlang, btn_enlang;
 
-    TextView tv_email;
+    TextView tv_email, tv_storagesize;
 
     TextView tv_photocount;
 
     SwitchCompat switchtheme;
+
+    ProgressBar storageprogressbar;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -49,6 +52,8 @@ public class SettingsFragment extends Fragment {
         tv_email = view.findViewById(R.id.tv_userEmail);
         btn_enlang = view.findViewById(R.id.btn_enlang);
         btn_trlang = view.findViewById(R.id.btn_trlang);
+        storageprogressbar = view.findViewById(R.id.storageProgressBar);
+        tv_storagesize = view.findViewById(R.id.tv_showstoragesize);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -121,8 +126,38 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+
+
+        SharedPreferences galleryPrefs2 = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+        long totalSize = galleryPrefs2.getLong("totalStorageSize", 0);
+        int totalStorageLimit = 20 * 1024 * 1024; // 20 MB
+        int progress = (int) ((totalSize * 100) / totalStorageLimit);
+        storageprogressbar.setProgress(progress);
+
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateStorageTextView();
+    }
+
+
+    private void updateStorageTextView() {
+        SharedPreferences sharedPreferences3 = getActivity().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+        long totalStorageSize = sharedPreferences3.getLong("totalStorageSize", 0);
+
+        // Total storage in MB
+        double totalStorageSizeMB = totalStorageSize / (1024.0 * 1024.0);
+
+        // Assuming max storage limit is 20 MB
+        double maxStorageMB = 20.0;
+
+        String storageText = String.format("%.2f MB / %.2f MB", totalStorageSizeMB, maxStorageMB);
+        tv_storagesize.setText(storageText);
+    }
+
 
     private void setLocale(String languageCode) {
         Locale locale = new Locale(languageCode);

@@ -1,5 +1,8 @@
 package com.example.masterphotos;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class StorageFragment extends Fragment implements StorageAdapter.OnImageClickListener {
     private FirebaseStorage storage;
@@ -63,12 +68,35 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                 .addOnSuccessListener(new OnSuccessListener<ListResult>() {
                     @Override
                     public void onSuccess(ListResult listResult) {
+                        AtomicLong totalSize = new AtomicLong(0);
+
                         for (StorageReference item : listResult.getItems()) {
-                            item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<android.net.Uri>() {
+                            item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
-                                public void onSuccess(android.net.Uri uri) {
+                                public void onSuccess(Uri uri) {
                                     imageURLs.add(uri.toString());
                                     adapter.notifyDataSetChanged();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Handle any errors
+                                }
+                            });
+
+                            item.getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                                @Override
+                                public void onSuccess(StorageMetadata storageMetadata) {
+                                    totalSize.addAndGet(storageMetadata.getSizeBytes());
+
+                                    // Eğer tüm öğeleri gezdiyseniz totalSize değerini settings fragment'a aktarın
+                                    Context context = getContext();
+                                    if (context != null) {
+                                        SharedPreferences sharedPreferences = context.getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putLong("totalStorageSize", totalSize.get());
+                                        editor.apply();
+                                    }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -86,6 +114,8 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                     }
                 });
     }
+
+
 
     @Override
     public void onImageClick(String imageURL) {
