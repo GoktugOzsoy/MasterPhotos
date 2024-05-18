@@ -1,9 +1,13 @@
 package com.example.masterphotos;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -38,7 +43,6 @@ public class UploadFragment extends Fragment {
     private String currentUserID;
 
     public UploadFragment() {
-
     }
 
     @Override
@@ -55,13 +59,7 @@ public class UploadFragment extends Fragment {
         if (user != null) {
             currentUserID = user.getUid();
         } else {
-            // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null olduğu için gerekli işlemleri yapamazsınız.
-            // Bu durumu uygun şekilde işleyin, örneğin bir hata mesajı gösterin veya kullanıcıyı giriş yapmaya yönlendirin.
-            // Burada currentUserID'yi null olarak ayarlamak yerine, uygun bir şekilde işlem yapın.
-            // Örneğin:
             Toast.makeText(getContext(), (R.string.please_sign_in_to_upload_images), Toast.LENGTH_SHORT).show();
-            // Veya
-            // startActivity(new Intent(getContext(), LoginActivity.class));
         }
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +76,9 @@ public class UploadFragment extends Fragment {
                 user = mAuth.getCurrentUser();
 
                 if (user != null) {
-                    uploadImage(imageView);
+                    checkStorageAndUpload(imageView);
                 } else {
                     Toast.makeText(getContext(), (R.string.please_sign_in_to_upload_images), Toast.LENGTH_SHORT).show();
-                    // Veya kullanıcıyı giriş yapmaya yönlendirin:
-                    // startActivity(new Intent(getContext(), LoginActivity.class));
                 }
             }
         });
@@ -95,6 +91,35 @@ public class UploadFragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    private void checkStorageAndUpload(ImageView imageView) {
+        if (imageUri != null) {
+            long fileSize = getFileSize(imageUri);
+            SharedPreferences sharedPreferences = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+            long totalStorageSize = sharedPreferences.getLong("totalStorageSize", 0);
+
+            if (totalStorageSize + fileSize <= 20 * 1024 * 1024) { // 20 MB limit
+                uploadImage(imageView);
+            } else {
+                Toast.makeText(getContext(), (R.string.storage_limit_exceeded), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), (R.string.please_select_an_image_first), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private long getFileSize(Uri uri) {
+        long size = 0;
+        Cursor cursor = requireContext().getContentResolver().query(uri, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
+            if (sizeIndex != -1) {
+                size = cursor.getLong(sizeIndex);
+            }
+            cursor.close();
+        }
+        return size;
     }
 
     private void uploadImage(ImageView imageView) {
@@ -116,6 +141,21 @@ public class UploadFragment extends Fragment {
                             Toast.makeText(getContext(), (R.string.successfully_uploaded), Toast.LENGTH_SHORT).show();
                             if (progressDialog.isShowing())
                                 progressDialog.dismiss();
+
+                            // Yüklenen dosya boyutunu toplam depolama boyutuna ekleyin
+                            taskSnapshot.getMetadata().getReference().getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                                @Override
+                                public void onSuccess(StorageMetadata storageMetadata) {
+                                    long uploadedFileSize = storageMetadata.getSizeBytes();
+                                    SharedPreferences sharedPreferences = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
+                                    long totalStorageSize = sharedPreferences.getLong("totalStorageSize", 0);
+                                    totalStorageSize += uploadedFileSize;
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putLong("totalStorageSize", totalStorageSize);
+                                    editor.apply();
+                                }
+                            });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
