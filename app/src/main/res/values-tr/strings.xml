@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="login">Giriş</string>
-    <string name="email">Email</string>
-    <string name="password">Şifre</string>
+    <string name="email">  Email</string>
+    <string name="password">  Şifre</string>
     <string name="register_now">Şimdi Kayıt Ol</string>
     <string name="register">Kayıt Ol</string>
     <string name="login_now">Şimdi Giriş Yap</string>

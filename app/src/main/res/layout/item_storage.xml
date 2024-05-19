@@ -4,7 +4,7 @@
     android:layout_width="131dp"
     android:layout_height="131dp"
     android:layout_margin="1dp"
-    card_view:cardCornerRadius="16dp"
+    card_view:cardCornerRadius="10dp"
     card_view:cardElevation="4dp">
 
     <ImageView

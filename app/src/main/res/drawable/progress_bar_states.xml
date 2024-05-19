@@ -5,7 +5,7 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="5dp" />
-            <solid android:color="#D3D3D3" /> <!-- Light gray color for the background -->
+            <solid android:color="@color/light_yellow" />
         </shape>
     </item>
 
@@ -14,7 +14,7 @@
         <clip>
             <shape>
                 <corners android:radius="5dp" />
-                <solid android:color="#AAAAAA" /> <!-- Gray color for the secondary progress -->
+                <solid android:color="#AAAAAA" />
             </shape>
         </clip>
     </item>
@@ -24,7 +24,7 @@
         <clip>
             <shape>
                 <corners android:radius="5dp" />
-                <solid android:color="#3F51B5" /> <!-- Blue color for the primary progress -->
+                <solid android:color="@color/dark_yellow" />
             </shape>
         </clip>
     </item>

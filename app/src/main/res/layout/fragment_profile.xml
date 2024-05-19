@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:theme="@style/Base.Theme.MasterPhotos"
     android:padding="20dp"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
-
 
     <ImageButton
         android:id="@+id/btn_settingsPro"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="end"
-        android:src="@drawable/img_settings" />
+        android:background="@color/night_black"
+        android:src="@drawable/img_settings"
+        app:tint="@color/dark_yellow" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,21 +26,29 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/login"
+            android:textColor="@color/medium_yellow"
+            android:background="@drawable/image_view_line"
             android:textSize="50sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lg_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:layout_height="46dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColorHint="@color/night_black"
+                android:textColor="@color/night_black"
+                android:background="@drawable/rounded_corner"
                 android:hint="@string/email" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -50,16 +60,23 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lg_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:layout_height="46dp"
+                android:textAlignment="center"
+                android:textColor="@color/night_black"
+                android:gravity="center"
+                android:textColorHint="@color/night_black"
+                android:background="@drawable/rounded_corner"
                 android:hint="@string/password" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="32dp"
+            android:textColor="@color/night_black"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner"
             android:text="@string/login" />
 
         <TextView
@@ -67,6 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_now"
+            android:textColor="@color/dark_yellow"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>

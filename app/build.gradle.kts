@@ -33,7 +33,8 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.annotation:annotation:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.annotation:annotation:1.8.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

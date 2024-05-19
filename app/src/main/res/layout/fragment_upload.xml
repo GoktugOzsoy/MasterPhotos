@@ -6,22 +6,21 @@
     android:orientation="vertical"
     tools:context=".UploadFragment">
 
-
-
     <ImageView
         android:id="@+id/firebaseimage"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_gravity="center"
         android:layout_width="349dp"
         android:layout_height="321dp"
-        android:layout_marginBottom="55dp"/>
+        android:layout_marginBottom="15dp"/>
 
     <Button
         android:id="@+id/selectimagebtn"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="120dp"
         android:layout_gravity="center"
+        android:background="@drawable/rounded_corner"
         android:textSize="23sp"
         android:layout_marginBottom="15dp"
         android:text="@string/select_image" />
@@ -30,6 +29,7 @@
         android:id="@+id/uploadimagebtn"
         android:layout_width="280dp"
         android:layout_height="60dp"
+        android:background="@drawable/rounded_corner"
         android:layout_gravity="center"
         android:textSize="23sp"
         android:text="@string/upload_image" />
