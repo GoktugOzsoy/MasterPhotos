@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment"
     android:padding="10dp"
+    android:background="@drawable/back"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -13,8 +14,8 @@
         android:layout_width="40dp"
         android:id="@+id/btnimage_goBack"
         android:layout_height="40dp"
-        android:background="@color/night_black"
-        app:tint="@color/dark_yellow"
+        android:background="@color/medium_yellow"
+        app:tint="@color/night_black"
         android:src="@drawable/img_goback" />
 
 
@@ -31,6 +32,7 @@
             android:textSize="23sp"
             android:textAlignment="center"
             android:padding="10dp"
+            android:layout_marginTop="83dp"
             android:textColor="@color/dark_yellow"
             android:textStyle="bold"
             android:layout_height="wrap_content"
@@ -160,8 +162,8 @@
         android:layout_height="45dp"
         android:layout_marginTop="30dp"
         android:layout_gravity="end"
-        android:background="@color/night_black"
-        app:tint="@color/dark_yellow"
+        android:background="@color/medium_yellow"
+        app:tint="@color/night_black"
         android:src="@drawable/img_logout" />
 
 </LinearLayout>
