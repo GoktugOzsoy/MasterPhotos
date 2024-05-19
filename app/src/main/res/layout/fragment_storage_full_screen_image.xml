@@ -47,4 +47,17 @@
         android:background="@android:color/transparent"
         android:src="@android:drawable/ic_menu_delete" />
 
+    <ImageButton
+        android:id="@+id/downloadButtonS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="141.5dp"
+        android:layout_marginEnd="141.5dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toStartOf="@+id/deleteButtonS"
+        android:layout_toEndOf="@+id/detailsButtonS"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/stat_sys_download" />
+
 </RelativeLayout>
