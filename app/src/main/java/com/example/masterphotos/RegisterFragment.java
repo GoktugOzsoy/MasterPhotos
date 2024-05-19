@@ -1,6 +1,8 @@
 package com.example.masterphotos;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +28,14 @@ public class RegisterFragment extends Fragment {
 
     TextInputEditText edittext_email, edittext_password;
     Button btn_register;
-    ImageButton btn_settings;
+    ImageButton btn_settings, rgbtn_showpassword;
     FirebaseAuth mAuth;
     FirebaseStorage mStorage;
     StorageReference mUserStorageRef;
     String currentUserID;
     TextView loginnow;
 
+    boolean isPasswordVisible = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class RegisterFragment extends Fragment {
         btn_register = view.findViewById(R.id.btn_register);
         loginnow = view.findViewById(R.id.txt_loginnow);
         btn_settings = view.findViewById(R.id.btn_settingsReg);
+        rgbtn_showpassword = view.findViewById(R.id.rgbtn_showpassword);
 
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance();
@@ -54,6 +58,27 @@ public class RegisterFragment extends Fragment {
                 ProfileFragment profileFragment = new ProfileFragment();
                 transaction.replace(R.id.fragment_container, profileFragment);
                 transaction.commit();
+            }
+        });
+
+        rgbtn_showpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPasswordVisible) {
+                    // If password is visible, hide it
+                    edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    rgbtn_showpassword.setImageResource(R.drawable.img_hidepassword); // Change icon to "hide password" icon
+                    isPasswordVisible = false;
+                } else {
+                    // If password is hidden, show it
+                    edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    rgbtn_showpassword.setImageResource(R.drawable.img_showpassword); // Change icon to "show password" icon
+                    isPasswordVisible = true;
+                }
+
+                edittext_password.setTypeface(Typeface.DEFAULT);
+                // Move the cursor to the end of the text
+                edittext_password.setSelection(edittext_password.getText().length());
             }
         });
 
