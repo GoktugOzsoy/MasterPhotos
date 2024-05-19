@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,20 +28,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class ProfileFragment extends Fragment {
-    public ProfileFragment() {
-
-    }
-
     TextInputEditText edittext_email, edittext_password;
-
     Button btn_login;
-
     ImageButton btn_settings, btn_goBack;
-
     FirebaseAuth mAuth;
-
     TextView registernow;
-
+    BottomNavigationView bottomNavigationView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,17 +46,14 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         registernow = view.findViewById(R.id.txt_registernow);
         btn_settings = view.findViewById(R.id.btn_settingsPro);
-
+        bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
 
         registernow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
                 RegisterFragment registerFragment = new RegisterFragment();
-
                 transaction.replace(R.id.fragment_container, registerFragment);
-
                 transaction.commit();
             }
         });
@@ -84,19 +74,17 @@ public class ProfileFragment extends Fragment {
                 email = edittext_email.getText().toString();
                 password = edittext_password.getText().toString();
 
-                if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                     Toast.makeText(getActivity(), getString(R.string.fill_fields_message), Toast.LENGTH_SHORT).show();
-
                     return;
                 }
 
                 mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     String userEmail = edittext_email.getText().toString();
-
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     if (user != null) {
                                         String userID = user.getUid();
@@ -107,26 +95,19 @@ public class ProfileFragment extends Fragment {
                                     }
 
                                     getActivity().getSupportFragmentManager().beginTransaction()
-                                            .replace(R.id.fragment_container, new SettingsFragment())
+                                            .replace(R.id.fragment_container, new StorageFragment())
                                             .commit();
 
-
-
+                                    // Alt gezinme çubuğunda "Storage" sekmesini seçili hale getir
+                                    bottomNavigationView.setSelectedItemId(R.id.nav_storage);
                                 } else {
-
                                     Toast.makeText(getActivity(), (R.string.login_failed), Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });
             }
         });
 
-
-
         return view;
     }
-    }
-
-
-
+}

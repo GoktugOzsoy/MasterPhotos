@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
-        // Uygulama başlangıcında ilk fragmenti yükle (UploadFragment)
+        // Uygulama başlangıcında ilk fragmenti yükle (StorageFragment)
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new UploadFragment()).commit();
     }
@@ -78,11 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
         public void updateBottomNavigationView() {
             BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-            Menu menu = bottomNavigationView.getMenu();
-            menu.findItem(R.id.nav_upload).setTitle(R.string.upload);
-            menu.findItem(R.id.nav_storage).setTitle(R.string.storage);
-            menu.findItem(R.id.nav_gallery).setTitle(R.string.gallery);
-            menu.findItem(R.id.nav_profile).setTitle(R.string.profile);
+            if (bottomNavigationView != null && bottomNavigationView.getVisibility() == View.VISIBLE) {
+                Menu menu = bottomNavigationView.getMenu();
+                menu.findItem(R.id.nav_upload).setTitle(R.string.upload);
+                menu.findItem(R.id.nav_storage).setTitle(R.string.storage);
+                menu.findItem(R.id.nav_gallery).setTitle(R.string.gallery);
+                menu.findItem(R.id.nav_profile).setTitle(R.string.profile);
+            }
         }
     };
 
