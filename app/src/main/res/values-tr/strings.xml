@@ -43,4 +43,6 @@
     <string name="image_path_not_found">Fotoğraf yolu bulunamadı</string>
     <string name="image_deleted_successfully">Fotoğraf silme başarılı</string>
     <string name="an_error_occurred_while_deleting_the_image">Fotoğrafı silerken bir hata oluştu</string>
+    <string name="failed_to_get_file_size">Failed to get file size</string>
+    <string name="storage_limit_exceeded">Storage limit exceeded</string>
 </resources>
