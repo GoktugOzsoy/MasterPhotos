@@ -2,6 +2,8 @@ package com.example.masterphotos;
 
 import android.content.ContentResolver;
 import androidx.exifinterface.media.ExifInterface;
+
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,7 +43,6 @@ public class FullScreenImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_full_screen_image, container, false);
 
-
         ImageView imageView = view.findViewById(R.id.fullScreenImageView);
         if (getArguments() != null && getArguments().containsKey(ARG_IMAGE_PATH)) {
             String imagePath = getArguments().getString(ARG_IMAGE_PATH);
@@ -68,7 +69,7 @@ public class FullScreenImageFragment extends Fragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteImageFromGallery();
+                showDeleteConfirmationDialog();
             }
         });
 
@@ -93,19 +94,32 @@ public class FullScreenImageFragment extends Fragment {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-                builder.setTitle((R.string.image_details));
+                builder.setTitle(R.string.image_details);
                 builder.setMessage(getString(R.string.name) + file.getName() + "\n" +
-                        (R.string.size) + fileSizeInKB + " KB" + "\n" +
-                        (R.string.date) + takenDate);
-                builder.setPositiveButton((R.string.ok), null);
+                        getString(R.string.size) + fileSizeInKB + " KB" + "\n" +
+                        getString(R.string.date) + takenDate);
+                builder.setPositiveButton(R.string.ok, null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             } else {
-                Toast.makeText(requireContext(), (R.string.image_path_not_found), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), R.string.image_path_not_found, Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle(R.string.delete_image);
+        builder.setMessage(R.string.are_you_sure_you_want_to_delete_this_image);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteImageFromGallery();
+            }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+    }
 
     private void deleteImageFromGallery() {
         if (getArguments() != null && getArguments().containsKey(ARG_IMAGE_PATH)) {
@@ -119,22 +133,18 @@ public class FullScreenImageFragment extends Fragment {
                 int deletedCount = contentResolver.delete(contentUri, selection, selectionArgs);
 
                 if (deletedCount > 0) {
-                    Toast.makeText(requireContext(), (R.string.image_deleted_successfully), Toast.LENGTH_SHORT).show();
-                    requireActivity().getSupportFragmentManager().popBackStack();
+                    Toast.makeText(requireContext(), R.string.image_deleted_successfully, Toast.LENGTH_SHORT).show();
+                    navigateToGalleryFragment();
                 } else {
-                    Toast.makeText(requireContext(), (R.string.an_error_occurred_while_deleting_the_image), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.an_error_occurred_while_deleting_the_image, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(requireContext(), (R.string.image_path_not_found), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), R.string.image_path_not_found, Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-
-
-
-
-
+    private void navigateToGalleryFragment() {
+        requireActivity().getSupportFragmentManager().popBackStack("GalleryFragment", 0);
+    }
 }
-
-

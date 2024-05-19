@@ -70,7 +70,7 @@ public class StorageFullScreenImageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showDeleteConfirmationDialog();
-                showBottomNavigation();
+                hideBottomNavigation();
             }
         });
 
@@ -112,15 +112,22 @@ public class StorageFullScreenImageFragment extends Fragment {
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle(R.string.delete_image);
+        hideBottomNavigation();
 
         builder.setMessage(R.string.are_you_sure_you_want_to_delete_this_image);
-        builder.setPositiveButton((R.string.yes), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteImage();
+                showBottomNavigation();
             }
         });
-        builder.setNegativeButton((R.string.no), null);
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                hideBottomNavigation();
+            }
+        });
         builder.show();
     }
 
