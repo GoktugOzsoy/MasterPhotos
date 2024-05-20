@@ -36,6 +36,7 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
     private RecyclerView recyclerView;
     private StorageAdapter adapter;
     private List<String> imageURLs;
+    private String chosenPhotoUrl;
 
     @Nullable
     @Override
@@ -89,7 +90,7 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                                 public void onSuccess(StorageMetadata storageMetadata) {
                                     totalSize.addAndGet(storageMetadata.getSizeBytes());
 
-                                    // Eğer tüm öğeleri gezdiyseniz totalSize değerini settings fragment'a aktarın
+                                    // Save total storage size in shared preferences
                                     Context context = getContext();
                                     if (context != null) {
                                         SharedPreferences sharedPreferences = context.getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
@@ -115,10 +116,9 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                 });
     }
 
-
-
     @Override
     public void onImageClick(String imageURL) {
+        chosenPhotoUrl = imageURL;  // Seçilen fotoğraf URL'sini kaydet
         openFullScreenImage(imageURL);
     }
 

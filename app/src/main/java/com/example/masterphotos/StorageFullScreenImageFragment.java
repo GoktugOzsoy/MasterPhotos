@@ -1,8 +1,12 @@
 package com.example.masterphotos;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +56,6 @@ public class StorageFullScreenImageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 requireActivity().getSupportFragmentManager().popBackStack();
-                // Geri butonuna basıldığında alt gezinme çubuğunu göster
                 showBottomNavigation();
             }
         });
@@ -74,29 +77,31 @@ public class StorageFullScreenImageFragment extends Fragment {
             }
         });
 
-        // Alt gezinme çubuğunu gizle
+        ImageButton downloadButton = view.findViewById(R.id.downloadButtonS);
+        downloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadImage();
+            }
+        });
+
         hideBottomNavigation();
 
         return view;
     }
 
     private void showDetailsDialog() {
-        // Firebase Storage'dan resmin detaylarını almak için referans oluştur
         StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageURL);
 
-        // Resmin metadata'sını al
         photoRef.getMetadata().addOnSuccessListener(metadata -> {
             long fileSizeInBytes = metadata.getSizeBytes();
             long fileSizeInKB = fileSizeInBytes / 1024;
 
-            // Resmin tarih bilgisini al
             long creationTimeMillis = metadata.getCreationTimeMillis();
 
-            // Tarihi biçimlendirme
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             String takenDate = dateFormat.format(new Date(creationTimeMillis));
 
-            // Detayları göstermek için bir iletişim kutusu oluştur
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
             builder.setTitle((R.string.image_details));
             builder.setMessage(getString((R.string.size)) + fileSizeInKB + " KB\n"
@@ -104,7 +109,6 @@ public class StorageFullScreenImageFragment extends Fragment {
             builder.setPositiveButton((R.string.ok), null);
             builder.show();
         }).addOnFailureListener(exception -> {
-            // Başarısız olursa kullanıcıya hata mesajı göster
             Toast.makeText(requireContext(), (R.string.failed_to_fetch_image_details), Toast.LENGTH_SHORT).show();
         });
     }
@@ -141,19 +145,30 @@ public class StorageFullScreenImageFragment extends Fragment {
         });
     }
 
-    private void hideBottomNavigation() {
-        // MainActivity'nin bir referansını al
-        MainActivity activity = (MainActivity) requireActivity();
+    private void downloadImage() {
+        StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageURL);
+        photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(uri);
+            request.setTitle("Downloading image");
+            request.setDescription("Downloading image from Firebase Storage");
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "downloaded_image.jpg");
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            downloadManager.enqueue(request);
 
-        // MainActivity'nin alt gezinme çubuğunu gizle
+            Toast.makeText(getContext(), "Downloading Image...", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getContext(), "Failed to download image", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void hideBottomNavigation() {
+        MainActivity activity = (MainActivity) requireActivity();
         activity.hideBottomNavigation();
     }
-    private void showBottomNavigation() {
-        // MainActivity'nin bir referansını al
-        MainActivity activity = (MainActivity) requireActivity();
 
-        // MainActivity'nin alt gezinme çubuğunu göster
+    private void showBottomNavigation() {
+        MainActivity activity = (MainActivity) requireActivity();
         activity.showBottomNavigation();
     }
-
 }
