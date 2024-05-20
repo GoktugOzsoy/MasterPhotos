@@ -20,39 +20,39 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:padding="10dp"
+        android:layout_height="646dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_userEmail"
             android:layout_width="match_parent"
-            android:textSize="23sp"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:textColor="@color/dark_yellow"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:padding="10dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/dark_yellow"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_photoCount"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:textSize="19sp"
-            android:textStyle="bold"
-            android:textColor="@color/dark_yellow"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:padding="10dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/dark_yellow"
+            android:textSize="19sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/storageprogressLayout"
             android:layout_width="match_parent"
             android:layout_height="126dp"
-            android:gravity="center"
             android:background="@drawable/card_border"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -81,31 +81,31 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:id="@+id/themeLayout"
-            android:padding="3dp"
-            android:gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="200dp"
-                android:padding="10dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_marginEnd="80dp"
-                android:textSize="20sp"
-                android:textAlignment="center"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="80dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/application_theme"
+                android:textAlignment="center"
                 android:textColor="@color/dark_yellow"
-                android:text="@string/application_theme" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_theme"
                 android:layout_width="60dp"
-                android:gravity="center"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:padding="10dp" />
         </LinearLayout>
 
@@ -113,45 +113,87 @@
         <LinearLayout
             android:id="@+id/languageLayout"
             android:layout_width="match_parent"
-            android:padding="10dp"
+            android:layout_height="200dp"
             android:gravity="center"
-            android:layout_marginBottom="100dp"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:padding="10dp">
 
 
             <TextView
                 android:layout_width="120dp"
-                android:gravity="center"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
                 android:text="@string/language"
                 android:textColor="@color/dark_yellow"
-                android:layout_marginEnd="40dp"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/btn_trlang"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:src="@drawable/img_trflag"
-                android:scaleType="fitXY"
-                android:layout_marginEnd="20dp"
-                android:padding="0dp"
+            <LinearLayout
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="83dp"
+                    android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_enlang"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:src="@drawable/img_enflag"
-                android:scaleType="fitXY"
-                android:padding="0dp"
-                />
+                    <ImageButton
+                        android:id="@+id/btn_trlang"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="23dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginEnd="20dp"
+                        android:padding="0dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_trflag"
+
+                        />
+
+                    <ImageButton
+                        android:id="@+id/btn_enlang"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="23dp"
+                        android:padding="0dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_enflag" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="79dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_rulang"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="23dp"
+                        android:padding="0dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_ruflag" />
+
+                    <ImageButton
+                        android:id="@+id/btn_jalang"
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:padding="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_jaflag" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <ImageButton

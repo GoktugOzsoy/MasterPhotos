@@ -119,6 +119,7 @@ public class ProfileFragment extends Fragment {
                                         // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null değer dönecektir
                                     }
 
+
                                     getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.fragment_container, new StorageFragment())
                                             .commit();
@@ -127,6 +128,7 @@ public class ProfileFragment extends Fragment {
                                     bottomNavigationView.setSelectedItemId(R.id.nav_storage);
                                 } else {
                                     Toast.makeText(getActivity(), (R.string.login_failed), Toast.LENGTH_SHORT).show();
+                                    edittext_password.setText("");
                                 }
                             }
                         });

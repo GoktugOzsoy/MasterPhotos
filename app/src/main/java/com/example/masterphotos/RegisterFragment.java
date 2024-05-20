@@ -118,6 +118,7 @@ public class RegisterFragment extends Fragment {
 
                                 } else {
                                     Toast.makeText(getActivity(), (R.string.register_failed), Toast.LENGTH_SHORT).show();
+                                    edittext_password.setText("");
                                 }
                             }
                         });
