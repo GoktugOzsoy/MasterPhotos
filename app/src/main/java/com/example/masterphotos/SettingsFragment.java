@@ -41,7 +41,6 @@ public class SettingsFragment extends Fragment {
         btn_logout = view.findViewById(R.id.btn_logout);
         tv_photocount = view.findViewById(R.id.tv_photoCount);
         btn_goBack = view.findViewById(R.id.btnimage_goBack);
-        switchtheme = view.findViewById(R.id.switch_theme);
         tv_email = view.findViewById(R.id.tv_userEmail);
         btn_enlang = view.findViewById(R.id.btn_enlang);
         btn_trlang = view.findViewById(R.id.btn_trlang);
@@ -62,10 +61,6 @@ public class SettingsFragment extends Fragment {
             resetProgressBar();
         }
 
-        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MySettings", Context.MODE_PRIVATE);
-        boolean switchState = sharedPreferences.getBoolean("switch_state", false);
-        switchtheme.setChecked(switchState);
-
         if (user != null) {
             btn_logout.setVisibility(View.VISIBLE);
             btn_goBack.setVisibility(View.INVISIBLE);
@@ -77,13 +72,6 @@ public class SettingsFragment extends Fragment {
         SharedPreferences galleryPrefs = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
         int photoCount = galleryPrefs.getInt("imageCount", 0);
         tv_photocount.setText(getString(R.string.total_photos) + photoCount);
-
-        switchtheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                saveSwitchState(isChecked);
-            }
-        });
 
         btn_goBack.setOnClickListener(new View.OnClickListener() {
             @Override

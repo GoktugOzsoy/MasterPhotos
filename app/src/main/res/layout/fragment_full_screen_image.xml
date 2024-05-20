@@ -24,7 +24,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:src="@drawable/img_close"
         app:tint="@color/yellow" />
 
     <ImageButton
@@ -37,7 +37,7 @@
         android:layout_marginBottom="16dp"
         app:tint="@color/yellow"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_info_details" />
+        android:src="@drawable/img_information"/>
 
     <ImageButton
         android:id="@+id/deleteButton"
@@ -49,6 +49,6 @@
         android:layout_marginBottom="16dp"
         app:tint="@color/yellow"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_delete" />
+        android:src="@drawable/img_delete"/>
 
 </RelativeLayout>

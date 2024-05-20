@@ -23,7 +23,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:src="@drawable/img_close"
         app:tint="@color/yellow"/>
 
     <ImageButton
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_info_details"
+        android:src="@drawable/img_information"
         app:tint="@color/yellow"/>
 
     <ImageButton
@@ -47,21 +47,21 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_delete"
+        android:src="@drawable/img_delete"
         app:tint="@color/yellow"/>
 
     <ImageButton
         android:id="@+id/downloadButtonS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="141.5dp"
-        android:layout_marginEnd="141.5dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="16dp"
         android:layout_toStartOf="@+id/deleteButtonS"
         android:layout_toEndOf="@+id/detailsButtonS"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/stat_sys_download"
+        android:src="@drawable/img_download"
         app:tint="@color/yellow"/>
 
 </RelativeLayout>
