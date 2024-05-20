@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment"
     android:padding="10dp"
+    android:background="@drawable/back"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -13,8 +14,8 @@
         android:layout_width="40dp"
         android:id="@+id/btnimage_goBack"
         android:layout_height="40dp"
-        android:background="@color/night_black"
-        app:tint="@color/dark_yellow"
+        android:background="@color/medium_yellow"
+        app:tint="@color/night_black"
         android:src="@drawable/img_goback" />
 
 
@@ -30,8 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text=""
-            android:textAlignment="center"
             android:textColor="@color/dark_yellow"
             android:textSize="23sp"
             android:textStyle="bold" />
