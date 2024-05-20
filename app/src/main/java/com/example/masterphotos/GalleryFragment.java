@@ -118,6 +118,6 @@ public class GalleryFragment extends Fragment {
     }
 
     public int getImageCount() {
-        return imagePaths != null ? imagePaths.size() : 0;
+        return imagePaths != null ? imagePaths.size():0;
     }
 }

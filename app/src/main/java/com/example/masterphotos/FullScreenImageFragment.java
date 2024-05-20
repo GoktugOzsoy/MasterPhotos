@@ -115,11 +115,13 @@ public class FullScreenImageFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteImageFromGallery();
+                requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
         builder.setNegativeButton(R.string.no, null);
         builder.show();
     }
+
 
     private void deleteImageFromGallery() {
         if (getArguments() != null && getArguments().containsKey(ARG_IMAGE_PATH)) {
@@ -145,6 +147,12 @@ public class FullScreenImageFragment extends Fragment {
     }
 
     private void navigateToGalleryFragment() {
+        // Pop the back stack to ensure we are not adding multiple instances of the GalleryFragment
         requireActivity().getSupportFragmentManager().popBackStack("GalleryFragment", 0);
+
+        // Replace the container with a new instance of GalleryFragment
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new GalleryFragment())
+                .commit();
     }
 }

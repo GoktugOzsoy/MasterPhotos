@@ -43,10 +43,10 @@
     <string name="image_path_not_found">Fotoğraf yolu bulunamadı</string>
     <string name="image_deleted_successfully">Fotoğraf silme başarılı</string>
     <string name="an_error_occurred_while_deleting_the_image">Fotoğrafı silerken bir hata oluştu</string>
-    <string name="failed_to_get_file_size">Failed to get file size</string>
-    <string name="storage_limit_exceeded">Storage limit exceeded</string>
+    <string name="failed_to_get_file_size">Dosya boyutunu almada hata</string>
+    <string name="storage_limit_exceeded">Depolama limiti aşımı</string>
     <string name="storage_usage">Depolama Kullanımı: </string>
-    <string name="login_to_see_storage_size">Login to see storage size</string>
-    <string name="image_downloaded" > adasd</string>
-    <string name="failed_to_download_image" > aefafafea</string>
+    <string name="login_to_see_storage_size">Depolama boyutunu görmek için giriş yap</string>
+    <string name="image_downloaded" > Dosya indirildi</string>
+    <string name="failed_to_download_image" > Dosya indirmede hata</string>
 </resources>

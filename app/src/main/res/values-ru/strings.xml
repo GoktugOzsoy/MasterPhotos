@@ -8,8 +8,8 @@
     <string name="login_now">Войти сейчас</string>
     <string name="application_theme">Тема приложения</string>
     <string name="language">Язык</string>
-    <string name="select_image">Выберите изображение</string>
-    <string name="upload_image">Загрузить изображение</string>
+    <string name="select_image">Выберите</string>
+    <string name="upload_image">Загрузить</string>
     <string name="there_is_no_existing_email">Нет существующей электронной почты</string>
     <string name="total_photos">"Всего фотографий: "</string>
     <string name="upload">Загрузить</string>
@@ -47,6 +47,6 @@
     <string name="storage_limit_exceeded">Превышен лимит хранилища</string>
     <string name="storage_usage">Использование хранилища: </string>
     <string name="login_to_see_storage_size">Войдите, чтобы увидеть размер хранилища</string>
-    <string name="image_downloaded" > adasd</string>
-    <string name="failed_to_download_image" > aefafafea</string>
+    <string name="image_downloaded" > Изображение загружено</string>
+    <string name="failed_to_download_image" > Не удалось загрузить изображение</string>
 </resources>

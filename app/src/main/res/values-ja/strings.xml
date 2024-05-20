@@ -47,6 +47,6 @@
     <string name="storage_limit_exceeded">ストレージ制限を超えました</string>
     <string name="storage_usage">ストレージ使用量: </string>
     <string name="login_to_see_storage_size">ログインしてストレージサイズを確認してください</string>
-    <string name="image_downloaded" > adasd</string>
-    <string name="failed_to_download_image" > aefafafea</string>
+    <string name="image_downloaded" > ダウンロードされた画像</string>
+    <string name="failed_to_download_image" > 画像のダウンロードに失敗しました</string>
 </resources>

@@ -1,9 +1,5 @@
 package com.example.masterphotos;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Locale;
-
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // BottomNavigationView'ı bul ve seçilen öğeyi dinle
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        bottomNavigationView.setSelectedItemId(R.id.nav_upload);
 
-        // Uygulama başlangıcında ilk fragmenti yükle (StorageFragment)
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new UploadFragment()).commit();
+        // Uygulama başlangıcında ilk fragmenti yükle (GalleryFragment)
+        if (savedInstanceState == null) {
+            loadFragment(new UploadFragment());
+        }
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -58,27 +57,23 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_upload) {
                 selectedFragment = new UploadFragment();
-            } else {
-                if (itemId == R.id.nav_gallery) {
-                    selectedFragment = new GalleryFragment();
+            } else if (itemId == R.id.nav_gallery) {
+                selectedFragment = new GalleryFragment();
+            } else if (itemId == R.id.nav_profile) {
+                // Kullanıcı giriş yapmışsa SettingsFragment'e, aksi halde ProfileFragment'e git
+                if (auth.getCurrentUser() == null) {
+                    selectedFragment = new ProfileFragment();
                 } else {
-                    if (itemId == R.id.nav_profile) {
-                        // Kullanıcı giriş yapmışsa SettingsFragment'e, aksi halde ProfileFragment'e git
-                        if (auth.getCurrentUser() == null) {
-                            selectedFragment = new ProfileFragment();
-                        } else {
-                            selectedFragment = new SettingsFragment();
-                        }
-                    } else {
-                        if (itemId == R.id.nav_storage) {
-                            selectedFragment = new StorageFragment();
-                        }
-                    }
+                    selectedFragment = new SettingsFragment();
                 }
+            } else if (itemId == R.id.nav_storage) {
+                selectedFragment = new StorageFragment();
             }
 
             // Seçilen fragmenti yükle
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            }
             updateBottomNavigationView();
             return true;
         }
@@ -95,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
 
     // BottomNavigationView'ın görünürlüğünü gizlemek için metot
     public void hideBottomNavigation() {
@@ -106,5 +107,11 @@ public class MainActivity extends AppCompatActivity {
     public void showBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    public void selectGalleryItem() {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_gallery);
+        }
     }
 }

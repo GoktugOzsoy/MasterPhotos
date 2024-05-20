@@ -1,12 +1,16 @@
 package com.example.masterphotos;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,11 +41,12 @@ import java.util.Locale;
 public class UploadFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 100;
+    private static final int REQUEST_PERMISSION = 123;
     private Uri imageUri;
     private StorageReference storageReference;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
-    FirebaseUser user;
+    private FirebaseUser user;
     private String currentUserID;
 
     public UploadFragment() {
@@ -60,6 +67,12 @@ public class UploadFragment extends Fragment {
             currentUserID = user.getUid();
         } else {
             Toast.makeText(getContext(), (R.string.please_sign_in_to_upload_images), Toast.LENGTH_SHORT).show();
+        }
+
+        if (checkPermission()) {
+            // İzin zaten varsa devam et
+        } else {
+            requestPermission();
         }
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +104,38 @@ public class UploadFragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED;
+        } else {
+            return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+
+    private void requestPermission() {
+        // API seviyesine göre izin iste
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_PERMISSION);
+        } else {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // İzinler verildiğinde devam et
+                Toast.makeText(requireContext(), "Permission Granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                // İzinler reddedildiğinde kullanıcıya bildir
+                Toast.makeText(requireContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void checkStorageAndUpload(ImageView imageView) {
