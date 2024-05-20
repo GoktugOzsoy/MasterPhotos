@@ -150,15 +150,15 @@ public class StorageFullScreenImageFragment extends Fragment {
         photoRef.getDownloadUrl().addOnSuccessListener(uri -> {
             DownloadManager downloadManager = (DownloadManager) requireContext().getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(uri);
-            request.setTitle("Downloading image");
-            request.setDescription("Downloading image from Firebase Storage");
+            request.setTitle(getString(R.string.downloading_image));
+            request.setDescription(getString(R.string.downloading_image_from_firebase_storage));
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "downloaded_image.jpg");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             downloadManager.enqueue(request);
 
-            Toast.makeText(getContext(), "Downloading Image...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.downloading_imagee, Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
-            Toast.makeText(getContext(), "Failed to download image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), (R.string.failed_to_download_image), Toast.LENGTH_SHORT).show();
         });
     }
 

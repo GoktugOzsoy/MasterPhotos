@@ -49,4 +49,7 @@
     <string name="login_to_see_storage_size">Войдите, чтобы увидеть размер хранилища</string>
     <string name="image_downloaded" > Изображение загружено</string>
     <string name="failed_to_download_image" > Не удалось загрузить изображение</string>
+    <string name="downloading_image">Загрузка изображения</string>
+    <string name="downloading_image_from_firebase_storage">Загрузка изображения из базы данных</string>
+    <string name="downloading_imagee">Загрузка изображения...</string>
 </resources>

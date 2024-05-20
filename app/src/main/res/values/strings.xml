@@ -49,4 +49,7 @@
     <string name="login_to_see_storage_size">Login to see storage size</string>
     <string name="image_downloaded" > succes</string>
     <string name="failed_to_download_image" > fail</string>
+    <string name="downloading_image">Downloading image</string>
+    <string name="downloading_image_from_firebase_storage">Downloading image from Firebase Storage</string>
+    <string name="downloading_imagee">Downloading Image...</string>
 </resources>
