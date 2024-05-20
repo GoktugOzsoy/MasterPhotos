@@ -1,8 +1,6 @@
 package com.example.masterphotos;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
@@ -67,18 +65,18 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isPasswordVisible) {
-                    // If password is visible, hide it
+
                     edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    lgbtn_showpassword.setImageResource(R.drawable.img_hidepassword); // Change icon to "hide password" icon
+                    lgbtn_showpassword.setImageResource(R.drawable.img_hidepassword);
                     isPasswordVisible = false;
                 } else {
-                    // If password is hidden, show it
+
                     edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    lgbtn_showpassword.setImageResource(R.drawable.img_showpassword); // Change icon to "show password" icon
+                    lgbtn_showpassword.setImageResource(R.drawable.img_showpassword);
                     isPasswordVisible = true;
                 }
                 edittext_password.setTypeface(Typeface.DEFAULT);
-                // Move the cursor to the end of the text
+
                 edittext_password.setSelection(edittext_password.getText().length());
             }
         });
@@ -116,15 +114,14 @@ public class ProfileFragment extends Fragment {
                                         String storagePath = "users/" + userID + "/images";
                                         StorageReference userStorageRef = FirebaseStorage.getInstance().getReference(storagePath);
                                     } else {
-                                        // Kullanıcı giriş yapmamışsa veya Firebase kimlik doğrulaması yoksa, null değer dönecektir
-                                    }
 
+                                    }
 
                                     getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.fragment_container, new StorageFragment())
                                             .commit();
 
-                                    // Alt gezinme çubuğunda "Storage" sekmesini seçili hale getir
+
                                     bottomNavigationView.setSelectedItemId(R.id.nav_storage);
                                 } else {
                                     Toast.makeText(getActivity(), (R.string.login_failed), Toast.LENGTH_SHORT).show();

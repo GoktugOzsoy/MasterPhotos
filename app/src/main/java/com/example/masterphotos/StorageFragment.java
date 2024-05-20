@@ -81,7 +81,6 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    // Handle any errors
                                 }
                             });
 
@@ -90,7 +89,7 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                                 public void onSuccess(StorageMetadata storageMetadata) {
                                     totalSize.addAndGet(storageMetadata.getSizeBytes());
 
-                                    // Save total storage size in shared preferences
+
                                     Context context = getContext();
                                     if (context != null) {
                                         SharedPreferences sharedPreferences = context.getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
@@ -102,7 +101,7 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    // Handle any errors
+
                                 }
                             });
                         }
@@ -111,14 +110,14 @@ public class StorageFragment extends Fragment implements StorageAdapter.OnImageC
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Handle any errors
+
                     }
                 });
     }
 
     @Override
     public void onImageClick(String imageURL) {
-        chosenPhotoUrl = imageURL;  // Seçilen fotoğraf URL'sini kaydet
+        chosenPhotoUrl = imageURL;
         openFullScreenImage(imageURL);
     }
 

@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +69,7 @@ public class UploadFragment extends Fragment {
         }
 
         if (checkPermission()) {
-            // İzin zaten varsa devam et
+
         } else {
             requestPermission();
         }
@@ -116,7 +115,7 @@ public class UploadFragment extends Fragment {
     }
 
     private void requestPermission() {
-        // API seviyesine göre izin iste
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_PERMISSION);
         } else {
@@ -129,11 +128,11 @@ public class UploadFragment extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // İzinler verildiğinde devam et
-                Toast.makeText(requireContext(), "Permission Granted!", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(requireContext(), (R.string.permission_granted), Toast.LENGTH_SHORT).show();
             } else {
-                // İzinler reddedildiğinde kullanıcıya bildir
-                Toast.makeText(requireContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(requireContext(), (R.string.permission_denied), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -144,7 +143,7 @@ public class UploadFragment extends Fragment {
             SharedPreferences sharedPreferences = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
             long totalStorageSize = sharedPreferences.getLong("totalStorageSize", 0);
 
-            if (totalStorageSize + fileSize <= 20 * 1024 * 1024) { // 20 MB limit
+            if (totalStorageSize + fileSize <= 20 * 1024 * 1024) {
                 uploadImage(imageView);
             } else {
                 Toast.makeText(getContext(), (R.string.storage_limit_exceeded), Toast.LENGTH_SHORT).show();
@@ -187,7 +186,6 @@ public class UploadFragment extends Fragment {
                             if (progressDialog.isShowing())
                                 progressDialog.dismiss();
 
-                            // Yüklenen dosya boyutunu toplam depolama boyutuna ekleyin
                             taskSnapshot.getMetadata().getReference().getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
                                 @Override
                                 public void onSuccess(StorageMetadata storageMetadata) {

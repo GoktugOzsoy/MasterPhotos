@@ -65,19 +65,18 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isPasswordVisible) {
-                    // If password is visible, hide it
+
                     edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    rgbtn_showpassword.setImageResource(R.drawable.img_hidepassword); // Change icon to "hide password" icon
+                    rgbtn_showpassword.setImageResource(R.drawable.img_hidepassword);
                     isPasswordVisible = false;
                 } else {
-                    // If password is hidden, show it
                     edittext_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    rgbtn_showpassword.setImageResource(R.drawable.img_showpassword); // Change icon to "show password" icon
+                    rgbtn_showpassword.setImageResource(R.drawable.img_showpassword);
                     isPasswordVisible = true;
                 }
 
                 edittext_password.setTypeface(Typeface.DEFAULT);
-                // Move the cursor to the end of the text
+
                 edittext_password.setSelection(edittext_password.getText().length());
             }
         });
@@ -124,8 +123,6 @@ public class RegisterFragment extends Fragment {
                         });
             }
         });
-
-
 
         return view;
     }

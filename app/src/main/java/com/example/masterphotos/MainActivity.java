@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // FirebaseAuth örneğini al
+
         auth = FirebaseAuth.getInstance();
 
-        // BottomNavigationView'ı bul ve seçilen öğeyi dinle
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         bottomNavigationView.setSelectedItemId(R.id.nav_upload);
 
-        // Uygulama başlangıcında ilk fragmenti yükle (GalleryFragment)
+
         if (savedInstanceState == null) {
             loadFragment(new UploadFragment());
         }
@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
 
-            // FirebaseAuth örneğini al
+
             auth = FirebaseAuth.getInstance();
 
-            // Seçilen öğeye göre ilgili fragmenti belirle
+
             int itemId = item.getItemId();
             if (itemId == R.id.nav_upload) {
                 selectedFragment = new UploadFragment();
             } else if (itemId == R.id.nav_gallery) {
                 selectedFragment = new GalleryFragment();
             } else if (itemId == R.id.nav_profile) {
-                // Kullanıcı giriş yapmışsa SettingsFragment'e, aksi halde ProfileFragment'e git
+
                 if (auth.getCurrentUser() == null) {
                     selectedFragment = new ProfileFragment();
                 } else {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new StorageFragment();
             }
 
-            // Seçilen fragmenti yükle
+
             if (selectedFragment != null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             }
@@ -97,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    // BottomNavigationView'ın görünürlüğünü gizlemek için metot
+
     public void hideBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.GONE);
     }
 
-    // BottomNavigationView'ın görünürlüğünü göstermek için metot
+
     public void showBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);

@@ -2,22 +2,17 @@ package com.example.masterphotos;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -58,7 +53,7 @@ public class GalleryFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED;
         } else {
-            // API 29 ve altı için uyumlu izin kontrolü
+
             return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
         }
     }
@@ -67,7 +62,7 @@ public class GalleryFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_PERMISSION);
         } else {
-            // API 29 ve altı için uyumlu izin isteği
+
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
         }
     }
@@ -78,7 +73,7 @@ public class GalleryFragment extends Fragment {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 loadImages();
             } else {
-                Toast.makeText(requireContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), (R.string.permission_denied), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -95,7 +90,7 @@ public class GalleryFragment extends Fragment {
             }
             cursor.close();
 
-            // Resim sayısını SharedPreferences'e kaydet
+
             int imageCount = imagePaths.size();
             SharedPreferences sharedPreferences = requireContext().getSharedPreferences("GalleryPrefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
