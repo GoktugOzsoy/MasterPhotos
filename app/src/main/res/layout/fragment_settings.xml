@@ -87,7 +87,9 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal"
+            android:background="@drawable/card_border"
             android:padding="10dp">
 
 

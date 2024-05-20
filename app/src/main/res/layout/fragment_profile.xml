@@ -7,7 +7,7 @@
     android:gravity="center"
     android:theme="@style/Base.Theme.MasterPhotos"
     android:padding="20dp"
-    android:background="@drawable/back"
+    android:background="@color/night_black"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 

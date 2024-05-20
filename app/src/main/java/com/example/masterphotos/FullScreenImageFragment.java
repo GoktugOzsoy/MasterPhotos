@@ -1,20 +1,21 @@
 package com.example.masterphotos;
 
 import android.content.ContentResolver;
-import androidx.exifinterface.media.ExifInterface;
-
+import android.content.ContentUris;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -123,24 +124,33 @@ public class FullScreenImageFragment extends Fragment {
         builder.show();
     }
 
-
     private void deleteImageFromGallery() {
 
         if (getArguments() != null && getArguments().containsKey(ARG_IMAGE_PATH)) {
             String imagePath = getArguments().getString(ARG_IMAGE_PATH);
 
             if (imagePath != null) {
+                try {
+                    ContentResolver contentResolver = requireContext().getContentResolver();
+                    Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    String[] projection = {MediaStore.Images.Media._ID};
+                    String selection = MediaStore.Images.Media.DATA + "=?";
+                    String[] selectionArgs = new String[]{imagePath};
 
-                ContentResolver contentResolver = requireContext().getContentResolver();
-                Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                String selection = MediaStore.Images.Media.DATA + " = ?";
-                String[] selectionArgs = new String[]{imagePath};
-                int deletedCount = contentResolver.delete(contentUri, selection, selectionArgs);
+                    try (Cursor cursor = contentResolver.query(contentUri, projection, selection, selectionArgs, null)) {
+                        if (cursor != null && cursor.moveToFirst()) {
+                            long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
+                            Uri uri = ContentUris.withAppendedId(contentUri, id);
 
-                if (deletedCount > 0) {
-                    Toast.makeText(requireContext(), R.string.image_deleted_successfully, Toast.LENGTH_SHORT).show();
-                    navigateToGalleryFragment();
-                } else {
+                            contentResolver.delete(uri, null, null);
+                            Toast.makeText(requireContext(), R.string.image_deleted_successfully, Toast.LENGTH_SHORT).show();
+                            navigateToGalleryFragment();
+                        } else {
+                            Toast.makeText(requireContext(), R.string.an_error_occurred_while_deleting_the_image, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                     Toast.makeText(requireContext(), R.string.an_error_occurred_while_deleting_the_image, Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -150,7 +160,6 @@ public class FullScreenImageFragment extends Fragment {
     }
 
     private void navigateToGalleryFragment() {
-
         requireActivity().getSupportFragmentManager().popBackStack("GalleryFragment", 0);
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new GalleryFragment())
