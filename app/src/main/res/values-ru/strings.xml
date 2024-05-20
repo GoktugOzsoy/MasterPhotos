@@ -52,4 +52,5 @@
     <string name="downloading_image">Загрузка изображения</string>
     <string name="downloading_image_from_firebase_storage">Загрузка изображения из базы данных</string>
     <string name="downloading_imagee">Загрузка изображения...</string>
+    <string name="permission_granted">Разрешение получено!</string>
 </resources>

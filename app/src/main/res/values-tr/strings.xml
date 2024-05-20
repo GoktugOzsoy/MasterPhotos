@@ -49,7 +49,8 @@
     <string name="login_to_see_storage_size">Depolama boyutunu görmek için giriş yap</string>
     <string name="image_downloaded" > Dosya indirildi</string>
     <string name="failed_to_download_image" > Dosya indirmede hata</string>
-    <string name="downloading_image">Downloading image</string>
-    <string name="downloading_image_from_firebase_storage">Downloading image from Firebase Storage</string>
-    <string name="downloading_imagee">Downloading Image...</string>
+    <string name="downloading_image">Resim indiriliyor</string>
+    <string name="downloading_image_from_firebase_storage">Resim "Firestore Storage"dan indiriliyor</string>
+    <string name="downloading_imagee">Resim indiriliyor...</string>
+    <string name="permission_granted">İzin verildi!</string>
 </resources>

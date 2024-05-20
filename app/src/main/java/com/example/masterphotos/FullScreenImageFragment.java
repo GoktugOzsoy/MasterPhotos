@@ -6,7 +6,6 @@ import androidx.exifinterface.media.ExifInterface;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +40,7 @@ public class FullScreenImageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_full_screen_image, container, false);
 
         ImageView imageView = view.findViewById(R.id.fullScreenImageView);
@@ -108,6 +108,7 @@ public class FullScreenImageFragment extends Fragment {
     }
 
     private void showDeleteConfirmationDialog() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle(R.string.delete_image);
         builder.setMessage(R.string.are_you_sure_you_want_to_delete_this_image);
@@ -124,10 +125,12 @@ public class FullScreenImageFragment extends Fragment {
 
 
     private void deleteImageFromGallery() {
+
         if (getArguments() != null && getArguments().containsKey(ARG_IMAGE_PATH)) {
             String imagePath = getArguments().getString(ARG_IMAGE_PATH);
 
             if (imagePath != null) {
+
                 ContentResolver contentResolver = requireContext().getContentResolver();
                 Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 String selection = MediaStore.Images.Media.DATA + " = ?";
@@ -147,10 +150,8 @@ public class FullScreenImageFragment extends Fragment {
     }
 
     private void navigateToGalleryFragment() {
-        // Pop the back stack to ensure we are not adding multiple instances of the GalleryFragment
-        requireActivity().getSupportFragmentManager().popBackStack("GalleryFragment", 0);
 
-        // Replace the container with a new instance of GalleryFragment
+        requireActivity().getSupportFragmentManager().popBackStack("GalleryFragment", 0);
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new GalleryFragment())
                 .commit();

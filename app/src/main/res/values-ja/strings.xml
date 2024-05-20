@@ -52,4 +52,5 @@
     <string name="downloading_image">画像をダウンロードしています</string>
     <string name="downloading_image_from_firebase_storage">データベースから画像をダウンロードする</string>
     <string name="downloading_imagee">画像をダウンロードしています...</string>
+    <string name="permission_granted">許可が下りました！</string>
 </resources>
