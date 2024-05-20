@@ -93,10 +93,10 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="160dp"
-            android:layout_height="32dp"
+            android:layout_height="42dp"
             android:textColor="@color/night_black"
-            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_corner"
+            android:layout_marginTop="10dp"
             android:text="@string/login" />
 
         <TextView

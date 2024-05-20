@@ -20,6 +20,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="120dp"
         android:layout_gravity="center"
+        android:textColor="@color/night_black"
         android:background="@drawable/rounded_corner"
         android:textSize="23sp"
         android:layout_marginBottom="15dp"
@@ -29,8 +30,8 @@
         android:id="@+id/uploadimagebtn"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:background="@drawable/rounded_corner"
         android:layout_gravity="center"
+        android:background="@drawable/rounded_corner"
         android:textSize="23sp"
         android:text="@string/upload_image" />
 
