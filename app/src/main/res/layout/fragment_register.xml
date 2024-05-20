@@ -43,7 +43,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/rg_email"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="55dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColorHint="@color/night_black"
@@ -65,7 +65,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/rg_password"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="55dp"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:inputType="textPassword"
@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/login_now"
+            android:layout_marginTop="2dp"
             android:textColor="@color/dark_yellow"
             android:textSize="16sp"
             android:textStyle="bold" />
