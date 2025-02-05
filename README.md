@@ -1,54 +1,35 @@
-MasterPhotos
+📸 MasterPhotos <br>
+MasterPhotos is an Android application that allows users to upload, store, view, and manage their photos securely using Firebase Storage.<br><br>
 
-MasterPhotos, Firebase ile entegre çalışan bir Android galeri uygulamasıdır. Kullanıcıların fotoğraflarını yüklemelerine, görüntülemelerine, silmelerine ve indirmelerine olanak tanır.
+🚀 Features<br>
+✅ Upload Photos: Users can select and upload photos from their device.<br>
+✅ View Photos: Displays uploaded images with a full-screen preview option.<br>
+✅ Delete Photos: Users can delete stored images.<br>
+✅ Download Photos: Ability to download images to local storage.<br>
+✅ Photo Details: Shows metadata such as file size and upload date.<br>
+✅ Storage Limit: Prevents exceeding the 20MB storage limit per user.<br>
+✅ Multi-language Support: Available in Turkish, English, Japanese, and Russian.<br><br>
 
-Özellikler
+🛠️ Technologies Used<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Java (for Android development)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Firebase Storage (for cloud storage)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Firebase Authentication (for user authentication)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;- Glide (for efficient image loading)<br><br>
+    
+📥 Installation<br>
+&nbsp;&nbsp;&nbsp;1. Clone the repository:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Copy Edit git clone https://github.com/your-username/MasterPhotos.git<br>
+&nbsp;&nbsp;&nbsp;2. Open the project in Android Studio.<br>
+&nbsp;&nbsp;&nbsp;3. Configure Firebase:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Add your google-services.json file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Enable Firebase Storage and Authentication.<br>
+&nbsp;&nbsp;&nbsp;4. Build and run the app on your Android device.<br><br>
+    
+📸 Screenshots<br>
+Upload Photo	View Photo	Delete Photo<br><br>
 
--📸 Fotoğraf Yükleme: Kullanıcılar cihazlarından fotoğraf seçerek Firebase Storage’a yükleyebilir.
+📌 License<br>
+This project is licensed under the MIT License.<br><br>
 
--🖼️ Tam Ekran Görüntüleme: Fotoğraflar tam ekran modunda görüntülenebilir.
-
--❌ Fotoğraf Silme: Kullanıcılar yükledikleri fotoğrafları silebilir.
-
--📥 Fotoğraf İndirme: Kullanıcılar fotoğrafları cihazlarına indirebilir.
-
--🔍 Fotoğraf Detayları: Dosya boyutu ve oluşturulma tarihi gibi bilgileri görüntüleyebilirsiniz.
-
--🌍 Çoklu Dil Desteği: Uygulama Türkçe, İngilizce, Japonca ve Rusça dillerini destekler.
-
-Kullanılan Teknolojiler
-
--Java (Android geliştirme için)
-
--Firebase Authentication (Kullanıcı kimlik doğrulama)
-
--Firebase Storage (Fotoğraf depolama)
-
--Glide (Görsellerin hızlı yüklenmesi için)
-
-Kurulum
-
-1. Projeyi klonlayın:
-
-    -git clone https://github.com/kullaniciadi/MasterPhotos.git
-
-2. Android Studio ile açın.
-
-3. Firebase yapılandırmasını tamamlayın:
-
-    -Firebase Console’a giriş yapın.
-
-    -Yeni bir proje oluşturun veya mevcut bir projeyi seçin.
-
-    -google-services.json dosyasını indirin ve app klasörüne ekleyin.
-
-4. Uygulamayı çalıştırın! 🚀
-
-Katkıda Bulunma
-
-Katkıda bulunmak isterseniz, lütfen bir pull request oluşturun veya bir issue açarak önerilerinizi paylaşın.
-
-Lisans
-
-Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasına göz atabilirsiniz.
-
+🌍 Switch Language:<br>
+🇹🇷 For Turkish, click here: README_TR.md<br>
