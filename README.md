@@ -1,5 +1,5 @@
-🌍 Switch Language:<br>
-🇹🇷 For Turkish, click [here](README_TR.md)<br><br>
+🌍 Dil Değiştirme:<br>
+🇹🇷 Türkçe için, [buraya](README_TR.md) tıklayın.<br><br>
 
 📸 MasterPhotos <br>
 &nbsp;&nbsp;&nbsp;MasterPhotos is an Android application that allows users to upload, store, view, and manage their photos securely using Firebase Storage.<br><br>
