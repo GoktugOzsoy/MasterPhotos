@@ -1,14 +1,14 @@
 📸 MasterPhotos <br>
-MasterPhotos is an Android application that allows users to upload, store, view, and manage their photos securely using Firebase Storage.<br><br>
+&nbsp;&nbsp;&nbsp;MasterPhotos is an Android application that allows users to upload, store, view, and manage their photos securely using Firebase Storage.<br><br>
 
 🚀 Features<br>
-📸 Upload Photos: Users can select and upload photos from their device.<br>
-🖼️ View Photos: Displays uploaded images with a full-screen preview option.<br>
-❌ Delete Photos: Users can delete stored images.<br>
-📥 Download Photos: Ability to download images to local storage.<br>
-🔍 Photo Details: Shows metadata such as file size and upload date.<br>
-📦 Storage Limit: Prevents exceeding the 20MB storage limit per user.<br>
-🌍 Multi-language Support: Available in Turkish, English, Japanese, and Russian.<br><br>
+&nbsp;&nbsp;&nbsp;📸 Upload Photos: Users can select and upload photos from their device.<br>
+&nbsp;&nbsp;&nbsp;🖼️ View Photos: Displays uploaded images with a full-screen preview option.<br>
+&nbsp;&nbsp;&nbsp;❌ Delete Photos: Users can delete stored images.<br>
+&nbsp;&nbsp;&nbsp;📥 Download Photos: Ability to download images to local storage.<br>
+&nbsp;&nbsp;&nbsp;🔍 Photo Details: Shows metadata such as file size and upload date.<br>
+&nbsp;&nbsp;&nbsp;📦 Storage Limit: Prevents exceeding the 20MB storage limit per user.<br>
+&nbsp;&nbsp;&nbsp;🌍 Multi-language Support: Available in Turkish, English, Japanese, and Russian.<br><br>
 
 🛠️ Technologies Used<br>
 &nbsp;&nbsp;&nbsp;&nbsp;- Java (for Android development)<br>
