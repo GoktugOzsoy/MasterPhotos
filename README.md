@@ -1,3 +1,6 @@
+🌍 Switch Language:<br>
+🇹🇷 For Turkish, click [here](README_TR.md)<br><br>
+
 📸 MasterPhotos <br>
 &nbsp;&nbsp;&nbsp;MasterPhotos is an Android application that allows users to upload, store, view, and manage their photos securely using Firebase Storage.<br><br>
 
@@ -25,11 +28,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Enable Firebase Storage and Authentication.<br>
 &nbsp;&nbsp;&nbsp;4. Build and run the app on your Android device.<br><br>
     
-📸 Screenshots<br>
-Upload Photo	View Photo	Delete Photo<br><br>
+📸 Screenshots<br><br>
+![App Demo](ScreenShot/masterphotosgif.gif)<br>
+![App Demo](ScreenShot/masterphotos1.jpg)<br>
+![App Demo](ScreenShot/masterphotos2.jpg)<br>
+![App Demo](ScreenShot/masterphotos3.jpg)<br>
+![App Demo](ScreenShot/masterphotos6.jpg)<br>
+![App Demo](ScreenShot/masterphotos7.jpg)<br>
+![App Demo](ScreenShot/masterphotos8.jpg)<br>
+![App Demo](ScreenShot/masterphotos4.jpg)<br>
+![App Demo](ScreenShot/masterphotos5.jpg)<br><br>
 
 📌 License<br>
 This project is licensed under the MIT License.<br><br>
 
-🌍 Switch Language:<br>
-🇹🇷 For Turkish, click here: README_TR.md<br>
